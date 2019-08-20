@@ -24,7 +24,7 @@ yarn start
 
 [Acedemind ReactJS Getting Started Tutorial](https://www.youtube.com/watch?v=pgAvVxowaYU)
 
-
+[Traversy ReactJS Crash Course](https://www.youtube.com/watch?v=sBws8MSXN7A)
 
 
 ##### Note: content below this line is boiler-plate from create-react-app left in for its value.
