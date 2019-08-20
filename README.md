@@ -1,3 +1,36 @@
+# CareerDevs Capstone Scraper Project
+
+##### To run this project, first run mongod
+
+cd /Users/melocal/workspace/CareerDevs/ScraperProject/yahoo_scraper/data-mongodb
+
+mongod --dbpath=.
+
+##### then run yahoo_scraper rest api
+cd /Users/melocal/workspace/CareerDevs/ScraperProject/yahoo_scraper
+
+inside of eclipse, click on App.java and 
+press 
+#### alt+shift+x then b
+
+http://localhost:8081
+
+#### thirdly, start this react app in terminal
+cd /Users/melocal/workspace/CareerDevs/ScraperProject/scraper_view
+
+yarn start
+
+### Some resources I found helpful in creating this react app
+
+[Acedemind ReactJS Getting Started Tutorial](https://www.youtube.com/watch?v=pgAvVxowaYU)
+
+
+
+
+##### Note: content below this line is boiler-plate from create-react-app left in for its value.
+---
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
