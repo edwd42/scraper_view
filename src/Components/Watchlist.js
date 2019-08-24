@@ -1,54 +1,59 @@
 import React, { Component } from 'react'
-import $ from 'jquery';
-import { getDefaultWatermarks } from 'istanbul-lib-report';
+// import $ from 'jquery';
 
 class Watchlist extends Component {
 
     constructor() {
 		super()
 		this.state = {
-			watchlist:[]
+            watchlist:[],
+            isLoaded: false
         }
-        this.handleClick = this.handleClick.bind(this)
+        // this.handleClick = this.handleClick.bind(this)
     }
     
-    UNSAFE_componentDidMount(){
-        this.getData();
-    }
+    // UNSAFE_componentDidMount(){
+    //     // this.getData();
+    // }
 
-    getData(){
-        $.ajax({
-            url: 'http://localhost:8081/rest/api/findLastScrape/',
-            dataType:'json',
-            cache: false,
-            success: function(data){
-				console.log(data);
-                this.setState({watchlist: data});
-            }.bind(this),
-            error: function(xhr, status, err){
-                console.log("err " + err);
-                console.log("status " + status);
-                console.log("xhr.response " + xhr.responseText);
-            }
-        });
-    }
+    // getData(){
+    //     $.ajax({
+    //         url: 'http://localhost:8081/rest/api/findLastScrape/',
+    //         dataType:'json',
+    //         cache: false,
+    //         success: function(data){
+    //             this.setState({watchlist: data});
+    //             console.log("getData() returns ", data);
+    //         }.bind(this),
+    //         error: function(xhr, status, err){
+    //             console.log("err " + err);
+    //             console.log("status " + status);
+    //             console.log("xhr.response " + xhr.responseText);
+    //         }
+    //     });
 
-    handleClick(event){
-        event.preventDefault()
-        this.setState({watchlist: this.getData()})
-    }
+    // }
+
+    // handleClick(event){
+    //     event.preventDefault()
+    //     // const data = this.getData()
+    //     // this.setState({watchlist: data})
+    //     console.log("inside handleClick() ", this.props.watchlist)
+    // }
 
     render(){
+        
+        console.log(this.props)
         return (
             <div>
-                <h3>Watchlist</h3>
-                <button onClick={this.handleClick}>New Scrape</button>
-                <div>
-                    <span>{ this.watchlist }</span>
-                </div>
+                {/* <h3>Watchlist</h3> */}
+                {/* <button onClick={this.handleClick}>New Scrape</button> */}
+                {/* <div>{watchlistComponents}</div> */}
+                <p>{this.props.symbol} {this.props.timeStamp}</p>
             </div>
         )
     }
+
 }
 
 export default Watchlist;
