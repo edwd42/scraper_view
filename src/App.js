@@ -9,18 +9,22 @@ export default class App extends Component {
   constructor(){
     super()
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: true
     }
   }
 
   render(){
-  return (
-    <div className="App">
-      <Header/>
-      <Watchlist/>
-      
-    </div>
-  );
+    let status
+    this.state.isLoggedIn ? status = "in" : status = "out"
+
+    return (
+      <div className="App">
+        <Header/>
+        <h1>You are currently logged { status }</h1>
+        <Watchlist/>
+        
+      </div>
+    );
   }
 
 }

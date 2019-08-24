@@ -1,20 +1,31 @@
 import React, { Component } from 'react'
+import Conditional from './Conditional'
 // import $ from 'jquery';
 
-class Watchlist extends Component {
+export default class Watchlist extends Component {
 
     constructor() {
 		super()
 		this.state = {
             watchlist:[],
-            isLoaded: false
+            isLoading: true
         }
-        // this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
     
-    // UNSAFE_componentDidMount(){
-    //     // this.getData();
-    // }
+    UNSAFE_componentWillMount(){
+        console.log(this.state.isLoading)
+    }
+
+    componentDidMount(){
+        // this.getData();
+        setTimeout(() => {
+            this.setState({
+                isLoading: false
+            })
+            console.log(this.state.isLoading)
+        }, 1500)
+    }
 
     // getData(){
     //     $.ajax({
@@ -34,26 +45,25 @@ class Watchlist extends Component {
 
     // }
 
-    // handleClick(event){
-    //     event.preventDefault()
-    //     // const data = this.getData()
-    //     // this.setState({watchlist: data})
-    //     console.log("inside handleClick() ", this.props.watchlist)
-    // }
+    handleClick(event){
+        event.preventDefault()
+        // const data = this.getData()
+        // this.setState({watchlist: data})
+        console.log("inside handleClick() ")
+    }
 
     render(){
         
-        console.log(this.props)
         return (
             <div>
+                <Conditional isLoading={this.state.isLoading}/>
+                
                 {/* <h3>Watchlist</h3> */}
-                {/* <button onClick={this.handleClick}>New Scrape</button> */}
+                <button onClick={this.handleClick}>New Scrape</button>
                 {/* <div>{watchlistComponents}</div> */}
-                <p>{this.props.symbol} {this.props.timeStamp}</p>
+                {/* <p>{this.props.symbol} {this.props.timeStamp}</p> */}
             </div>
         )
     }
 
 }
-
-export default Watchlist;
