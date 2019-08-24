@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
+import { getDefaultWatermarks } from 'istanbul-lib-report';
 
 class Watchlist extends Component {
 
@@ -11,8 +12,11 @@ class Watchlist extends Component {
         this.handleClick = this.handleClick.bind(this)
     }
     
-    componentDidMount(){
+    UNSAFE_componentDidMount(){
+        this.getData();
+    }
 
+    getData(){
         $.ajax({
             url: 'http://localhost:8081/rest/api/findLastScrape/',
             dataType:'json',
@@ -30,13 +34,18 @@ class Watchlist extends Component {
     }
 
     handleClick(event){
-        console.log("working!!!")
+        event.preventDefault()
+        this.setState({watchlist: this.getData()})
     }
+
     render(){
         return (
             <div>
                 <h3>Watchlist</h3>
                 <button onClick={this.handleClick}>New Scrape</button>
+                <div>
+                    <span>{ this.watchlist }</span>
+                </div>
             </div>
         )
     }
