@@ -7,7 +7,17 @@ class Watchlist extends Component {
 		this.state = {
 			watchlist:[]
 		}
-	}
+    }
+    
+    componentDidMount(){
+        fetch("http://localhost:8081/rest/api/findLastScrape")
+            .then(response => response.json())
+            .then(response => {
+                const {watchlist} = response.data
+                console.log(watchlist[0])
+                this.setState({ watchlist: watchlist })
+            })
+    }
 
     render(){
         return (

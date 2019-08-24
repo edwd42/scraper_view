@@ -1,8 +1,11 @@
 import React from 'react'
 
 function Header(){
+	const styles = {backgroundColor: "lightgreen"}
 	return(
-		<h1>CareerDevs Capstone Scraper Project - MVP</h1>
+		<header>
+			<h1 style={ styles }>CareerDevs Capstone Scraper Project - MVP</h1>
+		</header>
 	)
 }
 
