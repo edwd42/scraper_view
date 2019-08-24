@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-const watchlist = () => {
-	return <p>I'm a little teapot!</p>
+class Watchlist extends Component {
+
+    constructor(props) {
+		super(props);
+		this.state = {
+			watchlist:[]
+		}
+	}
+
+    render(){
+        return (
+            <h3>Watchlist</h3>
+        )
+    }
 }
 
-export default watchlist;
+export default Watchlist;

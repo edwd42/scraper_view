@@ -1,14 +1,15 @@
-import React from 'react';
-import './App.css';
-import Watchlist from './Components/Watchlist';
+import React from 'react'
+import './App.css'
+import Header from './components/Header'
+import Watchlist from './components/Watchlist'
 
 function App() {
   return (
     <div className="App">
-		<h1>CareerDevs Capstone Scraper Project - MVP</h1>
+		<Header/>
 		<Watchlist/>
     </div>
   );
 }
 
-export default App;
+export default App
