@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-// import Conditional from './Conditional'
 import $ from 'jquery';
+import '../App.css'
 
 export default class Watchlist extends Component {
 
@@ -65,14 +65,14 @@ export default class Watchlist extends Component {
     }
 
     render(){
+        const leftAlign = { textAlign: "left" }
         const dataTable = this.state.isLoading ? 
         <h1>"Please wait while I fetch some data..."</h1> : 
         <table className="table">
             <thead>
             <tr>
-                <th>Symbol</th>
+                <th style={leftAlign}>Symbol</th>
                 <th>Last Price</th>
-                <th>Market Time</th>
                 <th>Volume</th>
                 <th>Market Cap</th>
             </tr>
@@ -83,9 +83,8 @@ export default class Watchlist extends Component {
                 Object.values(this.state.watchlist).map((watchlist,i) => {
                     return (
                         <tr key={i}>
-                            <td>{watchlist.symbol}</td>
+                            <td style={leftAlign}>{watchlist.symbol}</td>
                             <td>{watchlist.lastPrice}</td>
-                            <td>{watchlist.marketTime}</td>
                             <td>{watchlist.volume}</td>
                             <td>{watchlist.marketCap}</td>
                         </tr>
