@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CareerDevs Capstone Scraper Project
 
 ##### To run this project, first run mongod
@@ -30,6 +31,28 @@ yarn start
 ##### Note: content below this line is boiler-plate from create-react-app left in for its value.
 ---
 
+=======
+# scraper_view - this ReactJS project is the UI front-end for yahoo_scraper
+
+to run this app, follow these steps:
+
+1. start mongodb
+
+2. java -jar target/Scraper.jar
+
+3. yarn start
+
+4. browser routes
+	/rest/api/findAllStocks
+	/rest/api/findBySymbol/{symbol}
+	/rest/api/findByTimeStamp/{timeStamp}
+	/rest/api/findLastScrape
+
+
+---
+
+##### the content below is legacy content from create-react-app
+>>>>>>> add-components
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
