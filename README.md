@@ -1,38 +1,6 @@
-<<<<<<< HEAD
 # CareerDevs Capstone Scraper Project
+## scraper_view - this ReactJS project is the UI front-end for yahoo_scraper
 
-##### To run this project, first run mongod
-
-cd /Users/melocal/workspace/CareerDevs/ScraperProject/yahoo_scraper/data-mongodb
-
-mongod --dbpath=.
-
-##### then run yahoo_scraper rest api
-cd /Users/melocal/workspace/CareerDevs/ScraperProject/yahoo_scraper
-
-inside of eclipse, click on App.java and 
-press 
-#### alt+shift+x then b
-
-http://localhost:8081
-
-#### thirdly, start this react app in terminal
-cd /Users/melocal/workspace/CareerDevs/ScraperProject/scraper_view
-
-yarn start
-
-### Some resources I found helpful in creating this react app
-
-[Acedemind ReactJS Getting Started Tutorial](https://www.youtube.com/watch?v=pgAvVxowaYU)
-
-[Traversy ReactJS Crash Course](https://www.youtube.com/watch?v=sBws8MSXN7A)
-
-
-##### Note: content below this line is boiler-plate from create-react-app left in for its value.
----
-
-=======
-# scraper_view - this ReactJS project is the UI front-end for yahoo_scraper
 
 to run this app, follow these steps:
 
@@ -47,6 +15,51 @@ to run this app, follow these steps:
 	/rest/api/findBySymbol/{symbol}
 	/rest/api/findByTimeStamp/{timeStamp}
 	/rest/api/findLastScrape
+
+##### To run this project, first run mongod
+1. start mongodb
+cd /Users/melocal/workspace/CareerDevs/ScraperProject/yahoo_scraper/data-mongodb
+
+mongod --dbpath=.
+
+##### then run yahoo_scraper rest api
+2. java -jar target/Scraper.jar
+cd /Users/melocal/workspace/CareerDevs/ScraperProject/yahoo_scraper
+
+3. yarn start
+inside of eclipse, click on App.java and 
+press 
+#### alt+shift+x then b
+
+http://localhost:8081
+
+#### thirdly, start this react app in terminal
+
+
+cd /Users/melocal/workspace/CareerDevs/ScraperProject/scraper_view
+
+yarn start
+
+4. browser routes
+	/rest/api/findAllStocks
+	/rest/api/findBySymbol/{symbol}
+	/rest/api/findByTimeStamp/{timeStamp}
+	/rest/api/findLastScrape
+
+
+--- 
+### Some resources I found helpful in creating this react app
+
+[Acedemind ReactJS Getting Started Tutorial](https://www.youtube.com/watch?v=pgAvVxowaYU)
+
+[Traversy ReactJS Crash Course](https://www.youtube.com/watch?v=sBws8MSXN7A)
+
+
+##### Note: content below this line is boiler-plate from create-react-app left in for its value.
+---
+
+
+
 
 
 ---

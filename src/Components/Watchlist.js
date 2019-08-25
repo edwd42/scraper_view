@@ -10,12 +10,14 @@ export default class Watchlist extends Component {
             watchlist: [],
             isLoading: false
         }
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
+        this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
+
     }
     
     UNSAFE_componentWillMount(){
         console.log(this.state.isLoading)
-        this.getData();
+        this.getLastScrape();
     }
 
     componentDidMount(){
@@ -37,7 +39,7 @@ export default class Watchlist extends Component {
     //     console.log("this.state.watchlist.length == ", this.state.watchlist.length)
     // }
 
-    getData(){
+    getLastScrape(){
         $.ajax({
             url: 'http://localhost:8081/rest/api/findLastScrape/',
             dataType:'json',
@@ -58,9 +60,36 @@ export default class Watchlist extends Component {
         });
     }
 
-    handleClick(event){
+    getScrapeHistory(){
+        $.ajax({
+            url: 'http://localhost:8081/rest/api/findAllStocks/',
+            dataType:'json',
+            cache: false,
+            success: function(data){
+                this.setState({
+                    watchlist: data,
+                    isLoading: false
+                });
+                console.log("getData() returns ", data);
+                console.log("this.state.watchlist.length == ", this.state.watchlist.length)
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.log("err " + err);
+                console.log("status " + status);
+                console.log("xhr.response " + xhr.responseText);
+            }
+        });
+    }
+
+    handleClickGetLastScrape(event){
         event.preventDefault()
-        this.getData()
+        this.getLastScrape()
+        console.log("inside handleClick() ", this.state.watchlist.length)
+    }
+
+    handleClickGetScrapeHistory(event){
+        event.preventDefault()
+        this.getScrapeHistory()
         console.log("inside handleClick() ", this.state.watchlist.length)
     }
 
@@ -96,7 +125,11 @@ export default class Watchlist extends Component {
 
         return (
             <div>
-                <p><button onClick={this.handleClick}>New Scrape</button></p>
+                <p>
+                    <button onClick={this.handleClickGetLastScrape}>New Scrape</button>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <button onClick={this.handleClickGetScrapeHistory}>Scrape History</button>
+                </p>
                 <div>{ dataTable }</div>
             </div>
         )
