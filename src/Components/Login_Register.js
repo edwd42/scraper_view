@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import reactDOM from 'react-dom'
+import './assets/_loginSty.scss'
 
 export default class Login_Register extends Component{
 
