@@ -8,6 +8,7 @@ export default class Watchlist extends Component {
 		super()
 		this.state = {
             watchlist: [],
+            timeStamp: null,
             isLoading: false
         }
         this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
@@ -16,8 +17,7 @@ export default class Watchlist extends Component {
     }
     
     UNSAFE_componentWillMount(){
-        console.log(this.state.isLoading)
-        this.getLastScrape();
+        this.getLastScrape()
     }
 
     componentDidMount(){
@@ -79,6 +79,14 @@ export default class Watchlist extends Component {
                 console.log("xhr.response " + xhr.responseText);
             }
         });
+
+        let timeStampH
+        for (let i = 0; i < this.state.watchlist.length; i++){
+            // console.log(this.state.watchlist[i]['timeStamp'])
+            timeStampH = this.state.watchlist[i]['timeStamp']
+        }
+        console.log(timeStampH)
+
     }
 
     handleClickGetLastScrape(event){
@@ -95,6 +103,15 @@ export default class Watchlist extends Component {
 
     render(){
         const leftAlign = { textAlign: "left" }
+
+        let timeStamp
+        for (let i = 0; i < this.state.watchlist.length; i++){
+            // console.log(this.state.watchlist[i]['timeStamp'])
+            timeStamp = this.state.watchlist[i]['timeStamp']
+        }
+        console.log(timeStamp)
+        
+        console.log(this.state.isLoading)
         const dataTable = this.state.isLoading ? 
         <h1>"Please wait while I fetch some data..."</h1> : 
         <table className="table">
@@ -130,6 +147,7 @@ export default class Watchlist extends Component {
                     <span>&nbsp;&nbsp;&nbsp;</span>
                     <button onClick={this.handleClickGetScrapeHistory}>Scrape History</button>
                 </p>
+                <span>Market Time of this Scrape: {timeStamp}</span>
                 <div>{ dataTable }</div>
             </div>
         )
