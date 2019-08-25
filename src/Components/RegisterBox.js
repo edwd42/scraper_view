@@ -34,6 +34,23 @@ export default class RegisterBox extends React.Component {
 		});
 	}
 
+	//Update Username, password, and email on change event 
+	onUsernameChange(e) {
+		this.setState({username: e.target.value});
+		//We want to clear the error when ever the user type something new 
+		this.clearValidationErr("username");
+	}
+
+	onEmailChange(e) {
+		this.setState({email: e.target.value});
+		this.clearValidationErr("email");
+	}
+
+	onPasswordChange(e) {
+		this.setState({password: e.target.value});
+		this.clearValidationErr("password");
+	}
+
   render() {
     return (
       <div className="inner-container">
