@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-import reactDOM from 'react-dom'
+// import reactDOM from 'react-dom'
 import './styles/_loginSty.scss'
 import LoginBox from  './LoginBox'
 import RegisterBox from './RegisterBox'
-import TransitionGroup from "react-transition-group";
-import FadeTransition from "../src/transitions/fadeTransition";
+
 
 export default class Login_Register extends Component{
 
   constructor(props) {
     super(props);
     this.state = {
-      isLoginOpen: true,
-      isRegisterOpen: false
+      isLoginOpen: false,
+      isRegisterOpen: true
     };
   }
 
@@ -30,8 +29,7 @@ export default class Login_Register extends Component{
 			
 			<div className="root-container">
 			<h1>Hello, please login or register</h1>
-
-        <div className="box-controller">
+			        <div className="box-controller">
           <div
             className={"controller " + (this.state.isLoginOpen
             ? "selected-controller"
@@ -51,16 +49,8 @@ export default class Login_Register extends Component{
             Register
           </div>
         </div>
-				        <FadeTransition isOpen={this.state.isLoginOpen} duration={500}>
-          <div className="box-container">
-            <LoginBox/>
-          </div>
-        </FadeTransition>
-        <FadeTransition isOpen={this.state.isRegisterOpen} duration={500}>
-          <div className="box-container">
-            <RegisterBox/>
-          </div>
-        </FadeTransition>
+      	{this.state.isLoginOpen && <LoginBox/>}
+      	{this.state.isRegisterOpen && <RegisterBox/>}
 			</div>
 		)
 	}

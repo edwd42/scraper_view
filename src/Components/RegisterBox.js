@@ -4,12 +4,35 @@ import './styles/_loginSty.scss'
 
 export default class RegisterBox extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+	constructor(props) {
+	super(props);
+	this.state = {};
+	}
 
-  submitRegister(e) {}
+	submitRegister(e) {}
+
+	showValidationErr(elm, msg) {
+		this.setState((prevState) => ({
+			errors: [
+			...prevState.errors, {
+				elm,
+				msg
+			}
+			]
+		}));
+	}
+
+	clearValidationErr(elm) {
+		this.setState((prevState) => {
+			let newArr = [];
+			for (let err of prevState.errors) {
+			if (elm != err.elm) {
+				newArr.push(err);
+			}
+			}
+			return {errors: newArr};
+		});
+	}
 
   render() {
     return (
