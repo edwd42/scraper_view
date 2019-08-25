@@ -1,19 +1,8 @@
 import React from 'react'
 
 function Conditional(props){
-	// setTimeout(() => {
-	// 	console.log(props.isLoading)
-	// }, 1500)
 
-	if(props.isLoading === true){
-		return (
-			<h1>Loading...</h1>
-		)
-	} else {
-		return (
-			<h1>Done loading.</h1>
-		)
-	}
+	return props.isLoading ? <h1>Please wait while I fetch some data...</h1> : <h1>Done loading.</h1>
 }
 
 export default Conditional
