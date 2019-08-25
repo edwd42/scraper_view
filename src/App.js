@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import './components/styles/App.css'
 import Header from './components/Header'
 import Watchlist from './components/Watchlist'
 import Login_Register from './components/Login_Register'

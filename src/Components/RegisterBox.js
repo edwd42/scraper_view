@@ -1,5 +1,8 @@
 //Register Box 
-class RegisterBox extends React.Component {
+import React, { Component } from 'react'
+import './styles/_loginSty.scss'
+
+export default class RegisterBox extends React.Component {
 
   constructor(props) {
     super(props);

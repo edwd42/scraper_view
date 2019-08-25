@@ -1,48 +1,51 @@
 //Login Box
-class LoginBox extends React.Component {
+import React, { Component } from 'react'
+import './styles/_loginSty.scss'
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
-  submitLogin(e) {}
+export default class LoginBox extends React.Component {
 
-  render() {
-    return (
-      <div className="inner-container">
-        <div className="header">
-          Login
-        </div>
-        <div className="box">
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
 
-          <div className="input-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              className="login-input"
-              placeholder="Username"/>
-          </div>
+	submitLogin(e) {}
 
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="login-input"
-              placeholder="Password"/>
-          </div>
+	render() {
+		return (
+			<div className="inner-container">
+				<div className="header">
+				Login
+				</div>
+				<div className="box">
 
-          <button
-            type="button"
-            className="login-btn"
-            onClick={this
-            .submitLogin
-            .bind(this)}>Login</button>
-        </div>
-      </div>
-    );
-  }
+				<div className="input-group">
+					<label htmlFor="username">Username</label>
+					<input
+					type="text"
+					name="username"
+					className="login-input"
+					placeholder="Username"/>
+				</div>
 
+				<div className="input-group">
+					<label htmlFor="password">Password</label>
+					<input
+					type="password"
+					name="password"
+					className="login-input"
+					placeholder="Password"/>
+				</div>
+
+				<button
+					type="button"
+					className="login-btn"
+					onClick={this
+					.submitLogin
+					.bind(this)}>Login</button>
+				</div>
+			</div>
+		);
+	}
 }

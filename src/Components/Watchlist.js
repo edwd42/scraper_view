@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
-import '../App.css'
+import './styles/App.css'
 
 export default class Watchlist extends Component {
 
