@@ -1,36 +1,28 @@
 //Register Box 
 import React, { Component } from 'react'
 import './styles/_loginSty.scss'
+import Login_Register from './Login_Register';
+// import LoginBox from './LoginBox'
 
 export default class RegisterBox extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      errors: [],
-      pwdState: null
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			username: "",
+			email: "",
+			password: "",
+			errors: [],
+			pwdState: null,
+			showLogin: !showLogin,
+			showRegister: !showRegister,
+			isRegistered: !isRegistered,
+			isLoginOpen: !isLoginOpen,
+      isRegisterOpen: !isRegisterOpen
+		};
+	}
 
-  submitRegister(e) {
-
-    console.log(this.state);
-
-    if (this.state.username == "") {
-      this.showValidationErr("username", "Username Cannot be empty!");
-    }
-    if (this.state.email == "") {
-      this.showValidationErr("email", "Email Cannot be empty!");
-    }
-    if (this.state.password == "") {
-      this.showValidationErr("password", "Password Cannot be empty!");
-    }
-  }
-
-
+	//Add New Error Object to the array {elm: msg}
 	showValidationErr(elm, msg) {
 		this.setState((prevState) => ({
 			errors: [
@@ -42,9 +34,11 @@ export default class RegisterBox extends React.Component {
 		}));
 	}
 
+	//Remove a specific element from the array 
 	clearValidationErr(elm) {
 		this.setState((prevState) => {
 			let newArr = [];
+			//Add all elements from the prev array to the new one that has a different element
 			for (let err of prevState.errors) {
 				if (elm != err.elm) {
 					newArr.push(err);
@@ -69,15 +63,55 @@ export default class RegisterBox extends React.Component {
 	onPasswordChange(e) {
 		this.setState({ password: e.target.value });
 		this.clearValidationErr("password");
+
+		this.setState({ pwdState: "weak" });
+		if (e.target.value.length > 8) {
+			this.setState({ pwdState: "medium" });
+		}
+		if (e.target.value.length > 12) {
+			this.setState({ pwdState: "strong" });
+		}
+
+	}
+
+	openPopup(e) {
+		console.log("Thank you for registering");
+	}
+
+	submitRegister(e) {
+
+		console.log(this.state);
+
+		if (this.state.username == "") {
+			this.showValidationErr("username", "Username Cannot be empty!");
+		}
+		if (this.state.email == "") {
+			this.showValidationErr("email", "Email Cannot be empty!");
+		}
+		if (this.state.password == "") {
+			this.showValidationErr("password", "Password Cannot be empty!");
+		}
+
+		this.setState((prevState, props) => {
+			return{
+				isRegistered: true,
+				showRegister: false,
+				showLogin: true,
+				isLoginOpen: true,
+      	isRegisterOpen: false
+			}
+		});
 	}
 
 	render() {
 
+		//NULL by default (help us check when rendering)
 		let usernameErr = null,
 			passwordErr = null,
 			emailErr = null;
-
+		//Loop and find which ones has the error
 		for (let err of this.state.errors) {
+			//Assign the validation error message 
 			if (err.elm == "username") {
 				usernameErr = err.msg;
 			}
@@ -87,8 +121,23 @@ export default class RegisterBox extends React.Component {
 			if (err.elm == "email") {
 				emailErr = err.msg;
 			}
+			//No (else if or else) statements cause we need to check for all possible elements
 		}
 
+		let pwdWeak = false,
+			pwdMedium = false,
+			pwdStrong = false;
+
+		if (this.state.pwdState == "weak") {
+			pwdWeak = true;
+		} else if (this.state.pwdState == "medium") {
+			pwdWeak = true;
+			pwdMedium = true;
+		} else if (this.state.pwdState == "strong") {
+			pwdWeak = true;
+			pwdMedium = true;
+			pwdStrong = true;
+		}
 
 		return (
 			<div className="inner-container">
@@ -127,28 +176,51 @@ export default class RegisterBox extends React.Component {
 							: ""}</small>
 					</div>
 
-         <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="login-input"
-              placeholder="Password"
-              onChange={this
-              .onPasswordChange
-              .bind(this)}/>
-            <small className="danger-error">{passwordErr
-                ? passwordErr
-                : ""}</small>
+					<div className="input-group">
+						<label htmlFor="password">Password</label>
+						<input
+							type="password"
+							name="password"
+							className="login-input"
+							placeholder="Password"
+							onChange={this
+								.onPasswordChange
+								.bind(this)} />
+						<small className="danger-error">{passwordErr
+							? passwordErr
+							: ""}</small>
+
+						{this.state.password && <div className="password-state">
+							<div
+								className={"pwd pwd-weak " + (pwdWeak
+									? "show"
+									: "")}></div>
+							<div
+								className={"pwd pwd-medium " + (pwdMedium
+									? "show"
+									: "")}></div>
+							<div
+								className={"pwd pwd-strong " + (pwdStrong
+									? "show"
+									: "")}></div>
+						</div>}
+
 					</div>
+
 					<button
 						type="button"
 						className="login-btn"
+						onHover={this
+							.openPopup
+							.bind(this)}
 						onClick={this
 							.submitRegister
 							.bind(this)}>Register</button>
 				</div>
 			</div>
+
 		);
+
 	}
+
 }

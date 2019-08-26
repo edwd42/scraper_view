@@ -54,6 +54,9 @@ yarn start
 
 [Traversy ReactJS Crash Course](https://www.youtube.com/watch?v=sBws8MSXN7A)
 
+[Penywis Login Form](https://ipenywis.com/tutorials/Let's-Create-a-Modern-Login-Form-on-React-|-01)
+
+[Pro Tips](https://www.youtube.com/watch?v=xa-_FIy2NgE)
 
 ##### Note: content below this line is boiler-plate from create-react-app left in for its value.
 ---

@@ -7,7 +7,10 @@ export default class LoginBox extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			isRegistered: false,
+			isLoggedIn: false
+		};
 	}
 
 	submitLogin(e) {}
@@ -44,6 +47,7 @@ export default class LoginBox extends React.Component {
 					onClick={this
 					.submitLogin
 					.bind(this)}>Login</button>
+					<a href="#" style={{padding:"10px"}}>Forgot your password?</a>
 				</div>
 			</div>
 		);

@@ -10,8 +10,8 @@ export default class Login_Register extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      isLoginOpen: false,
-      isRegisterOpen: true
+      isLoginOpen: true,
+      isRegisterOpen: false
     };
   }
 
@@ -28,7 +28,7 @@ export default class Login_Register extends Component{
 		return (
 			
 			<div className="root-container">
-			<h1>Hello, please login or register</h1>
+			<h1>Welcome, please login or register</h1>
 			        <div className="box-controller">
           <div
             className={"controller " + (this.state.isLoginOpen
@@ -50,7 +50,7 @@ export default class Login_Register extends Component{
           </div>
         </div>
       	{this.state.isLoginOpen && <LoginBox/>}
-      	{this.state.isRegisterOpen && <RegisterBox/>}
+        {this.state.isRegisterOpen && <RegisterBox/>}
 			</div>
 		)
 	}
