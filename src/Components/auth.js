@@ -6,13 +6,13 @@ class Auth {
   login(cb) {
     this.authenticated = true;
     console.log("login called")
-    cb();
+    setTimeout(cb, 100) // fake async
   }
 
   logout(cb) {
     this.authenticated = false;
     console.log("logout called")
-    cb();
+    setTimeout(cb, 100) // fake async
   }
 
   isAuthenticated() {
