@@ -1,24 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import './styles/index.css';
+import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
+import './styles/index.css';
+import App from './App';
 
-import { LandingPage } from "./components/landingPage";
-import { AppLayout } from "./components/appLayout";
-import { ProtectedRoute } from "./components/protectedRoute";
-
-function App() {
-  return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <ProtectedRoute exact path="/app" component={AppLayout} />
-        <Route path="*" component={() => "404 NOT FOUND"} />
-      </Switch>
-    </div>
-  );
-}
 
 ReactDOM.render(
   <BrowserRouter>
