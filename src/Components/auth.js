@@ -5,11 +5,13 @@ class Auth {
 
   login(cb) {
     this.authenticated = true;
+    console.log("login called")
     cb();
   }
 
   logout(cb) {
     this.authenticated = false;
+    console.log("logout called")
     cb();
   }
 

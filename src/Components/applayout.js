@@ -1,6 +1,23 @@
-import React from "react";
+import React, { createContext } from 'react';
 import auth from "./auth";
-import Header from './Header'
+import Header from './Header';
+import Watchlist from './Watchlist';
+
+const { Consumer } = createContext({
+  user: {
+    firstname: "Ed",
+  }
+})
+
+const Profile = () => (
+  <Consumer>
+    {({ user }) => (
+      <div>Hello, {user.firstname}</div>
+    )}
+  </Consumer>
+)
+
+const Dashboard = () => <div><Profile /></div>
 
 export const AppLayout = props => {
 
@@ -8,6 +25,7 @@ export const AppLayout = props => {
     <div>
       <Header/>
       <h2>App Layout</h2>
+      <Dashboard/>
       <button
         onClick={() => {
           auth.logout(() => {
@@ -17,6 +35,7 @@ export const AppLayout = props => {
       >
         Logout
       </button>
+      <Watchlist/>
     </div>
   );
 };
