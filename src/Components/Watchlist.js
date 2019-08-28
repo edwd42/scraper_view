@@ -24,21 +24,6 @@ export default class Watchlist extends Component {
         this.setState({isLoading: true})
     }
 
-    // could not get fetch to work correctly
-    // this.state.watchlist throws an error
-    // getData(){
-    //     fetch('http://localhost:8081/rest/api/findLastScrape/')
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    //     .then(data => {
-    //         this.setState({
-    //             isLoading: false,
-    //             watchlist: data
-    //         })
-    //     })
-    //     console.log("this.state.watchlist.length == ", this.state.watchlist.length)
-    // }
-
     getLastScrape(){
         $.ajax({
             url: 'http://localhost:8081/rest/api/findLastScrape/',
