@@ -1,10 +1,13 @@
 import React from "react";
 import auth from "./auth";
+import Header from './Header'
 
 export const AppLayout = props => {
+
   return (
     <div>
-      <h1>App Layout</h1>
+      <Header/>
+      <h2>App Layout</h2>
       <button
         onClick={() => {
           auth.logout(() => {
