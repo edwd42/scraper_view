@@ -4,11 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
 
-import { LandingPage } from "./components/landingpage";
-import { AppLayout } from "./components/applayout";
-import { ProtectedRoute } from "./components/protectedroute";
-
-
+import { LandingPage } from "./components/landingPage";
+import { AppLayout } from "./components/appLayout";
+import { ProtectedRoute } from "./components/protectedRoute";
 
 function App() {
   return (
@@ -28,8 +26,6 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
-
-// ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
