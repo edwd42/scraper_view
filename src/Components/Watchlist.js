@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
 import '../styles/App.css'
+import data from './Data'
 
 export default class Watchlist extends Component {
 
@@ -46,31 +47,33 @@ export default class Watchlist extends Component {
     }
 
     getScrapeHistory(){
-        $.ajax({
-            url: 'http://localhost:8081/rest/api/findAllStocks/',
-            dataType:'json',
-            cache: false,
-            success: function(data){
-                this.setState({
-                    watchlist: data,
-                    isLoading: false
-                });
-                console.log("getData() returns ", data);
-                console.log("this.state.watchlist.length == ", this.state.watchlist.length)
-            }.bind(this),
-            error: function(xhr, status, err){
-                console.log("err " + err);
-                console.log("status " + status);
-                console.log("xhr.response " + xhr.responseText);
-            }
-        });
+        data.findAllStocks();
 
-        let timeStampH
-        for (let i = 0; i < this.state.watchlist.length; i++){
-            // console.log(this.state.watchlist[i]['timeStamp'])
-            timeStampH = this.state.watchlist[i]['timeStamp']
-        }
-        console.log(timeStampH)
+        // $.ajax({
+        //     url: 'http://localhost:8081/rest/api/findAllStocks/',
+        //     dataType:'json',
+        //     cache: false,
+        //     success: function(data){
+        //         this.setState({
+        //             watchlist: data,
+        //             isLoading: false
+        //         });
+        //         console.log("getData() returns ", data);
+        //         console.log("this.state.watchlist.length == ", this.state.watchlist.length)
+        //     }.bind(this),
+        //     error: function(xhr, status, err){
+        //         console.log("err " + err);
+        //         console.log("status " + status);
+        //         console.log("xhr.response " + xhr.responseText);
+        //     }
+        // });
+
+        // let timeStampH
+        // for (let i = 0; i < this.state.watchlist.length; i++){
+        //     // console.log(this.state.watchlist[i]['timeStamp'])
+        //     timeStampH = this.state.watchlist[i]['timeStamp']
+        // }
+        // console.log(timeStampH)
 
     }
 
@@ -82,7 +85,8 @@ export default class Watchlist extends Component {
 
     handleClickGetScrapeHistory(event){
         event.preventDefault()
-        this.getScrapeHistory()
+        // this.getScrapeHistory()
+        data.findAllStocks();
         console.log("inside handleClick() ", this.state.watchlist.length)
     }
 
