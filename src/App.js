@@ -6,13 +6,17 @@ import { AppLayout } from "./components/appLayout";
 import { ProtectedRoute } from "./components/protectedRoute";
 import Login from "./components/Login";
 
-const { Provider } = createContext({})
+// const { Provider } = createContext({})
+const Context = React.createContext();
 
-export default class App extends Component {
+const { Provider, Consumer } = Context;
+
+class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      watchlist: [],
       user: {},
       logout: () => this.logout()
     }
@@ -20,6 +24,7 @@ export default class App extends Component {
 
 
   render() {
+
     return (
       <Provider value={this.state}>
         <div className="App">
@@ -35,3 +40,5 @@ export default class App extends Component {
   }
 }
 
+// https://github.com/fernandoporazzi/react-router-react-context-api/blob/master/src/js/Context.js
+export {App as default, Consumer};
