@@ -1,141 +1,54 @@
-import React, { Component } from 'react'
-import $ from 'jquery';
+// @ts-nocheck
+import React from 'react'
 import '../styles/App.css'
+import { AppContext } from "../App"
 
-export default class Watchlist extends Component {
+const leftAlign = { textAlign: "left" }
 
-    constructor() {
-		super()
-		this.state = {
-            watchlist: [],
-            timeStamp: null,
-            isLoading: false
-        }
-        this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
-        this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
+const Watchlist = () => (
 
-    }
-    
-    UNSAFE_componentWillMount(){
-        this.getLastScrape()
-    }
-
-    componentDidMount(){
-        this.setState({isLoading: true})
-    }
-
-    getLastScrape(){
-        $.ajax({
-            url: 'http://localhost:8081/rest/api/findLastScrape/',
-            dataType:'json',
-            cache: false,
-            success: function(data){
-                this.setState({
-                    watchlist: data,
-                    isLoading: false
-                });
-                console.log("getData() returns ", data);
-                console.log("this.state.watchlist.length == ", this.state.watchlist.length)
-            }.bind(this),
-            error: function(xhr, status, err){
-                console.log("err " + err);
-                console.log("status " + status);
-                console.log("xhr.response " + xhr.responseText);
-            }
-        });
-    }
-
-    getScrapeHistory(){
-        $.ajax({
-            url: 'http://localhost:8081/rest/api/findAllStocks/',
-            dataType:'json',
-            cache: false,
-            success: function(data){
-                this.setState({
-                    watchlist: data,
-                    isLoading: false
-                });
-                console.log("getData() returns ", data);
-                console.log("this.state.watchlist.length == ", this.state.watchlist.length)
-            }.bind(this),
-            error: function(xhr, status, err){
-                console.log("err " + err);
-                console.log("status " + status);
-                console.log("xhr.response " + xhr.responseText);
-            }
-        });
-
-        let timeStampH
-        for (let i = 0; i < this.state.watchlist.length; i++){
-            // console.log(this.state.watchlist[i]['timeStamp'])
-            timeStampH = this.state.watchlist[i]['timeStamp']
-        }
-        console.log(timeStampH)
-
-    }
-
-    handleClickGetLastScrape(event){
-        event.preventDefault()
-        this.getLastScrape()
-        console.log("inside handleClick() ", this.state.watchlist.length)
-    }
-
-    handleClickGetScrapeHistory(event){
-        event.preventDefault()
-        this.getScrapeHistory()
-        console.log("inside handleClick() ", this.state.watchlist.length)
-    }
-
-    render(){
-        const leftAlign = { textAlign: "left" }
-
-        let timeStamp
-        for (let i = 0; i < this.state.watchlist.length; i++){
-            // console.log(this.state.watchlist[i]['timeStamp'])
-            timeStamp = this.state.watchlist[i]['timeStamp']
-        }
-        console.log(timeStamp)
-        
-        console.log(this.state.isLoading)
-        const dataTable = this.state.isLoading ? 
-        <h1>"Please wait while I fetch some data..."</h1> : 
+  <AppContext.Consumer>
+    {data => (
+      <React.Fragment>
+        <p>
+          <button onClick={data.handleClickGetLastScrape}>New Scrape</button>
+          <span>&nbsp;&nbsp;&nbsp;</span>
+          <button onClick={data.handleClickGetScrapeHistory}>Scrape History</button>
+        </p>
         <table className="table">
-            <thead>
+          <caption>Market Time of this Scrape: {data.timeStamp}</caption>
+          <thead>
             <tr>
-                <th style={leftAlign}>Symbol</th>
-                <th>Last Price</th>
-                <th>Volume</th>
-                <th>Market Cap</th>
+              <th style={leftAlign}>Symbol</th>
+              <th>Last Price</th>
+              <th>Todays Change</th>
+              <th>Percent Change</th>
+              <th>Volume</th>
+              <th>Market Cap</th>
             </tr>
-            </thead>
+          </thead>
 
-            <tbody>
+          <tbody>
             {
-                Object.values(this.state.watchlist).map((watchlist,i) => {
-                    return (
-                        <tr key={i}>
-                            <td style={leftAlign}>{watchlist.symbol}</td>
-                            <td>{watchlist.lastPrice}</td>
-                            <td>{watchlist.volume}</td>
-                            <td>{watchlist.marketCap}</td>
-                        </tr>
-                    )
-                })
+              Object.values(data.watchlist).map((wl, i) => {
+                return (
+                  <tr key={i}>
+                    <td style={leftAlign}>{wl.symbol}</td>
+                    <td>{wl.lastPrice}</td>
+                    <td>{wl.todaysChange}</td>
+                    <td>{wl.percentChange}</td>
+                    <td>{wl.volume}</td>
+                    <td>{wl.marketCap}</td>
+                  </tr>
+                )
+              })
             }
-            </tbody>
+          </tbody>
         </table>
 
-        return (
-            <div>
-                <p>
-                    <button onClick={this.handleClickGetLastScrape}>New Scrape</button>
-                    <span>&nbsp;&nbsp;&nbsp;</span>
-                    <button onClick={this.handleClickGetScrapeHistory}>Scrape History</button>
-                </p>
-                <span>Market Time of this Scrape: {timeStamp}</span>
-                <div>{ dataTable }</div>
-            </div>
-        )
-    }
+      </React.Fragment>
+    )}
+  </AppContext.Consumer>
+);
 
-}
+export default Watchlist

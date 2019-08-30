@@ -19,7 +19,7 @@ const Profile = () => (
 
 const Dashboard = () => <div><Profile /></div>
 
-export const AppLayout = props => {
+export const AppLayout = (props) => {
 
   return (
     <div>
