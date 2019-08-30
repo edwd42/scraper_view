@@ -6,22 +6,22 @@ import { AppLayout } from "./components/appLayout";
 import { ProtectedRoute } from "./components/protectedRoute";
 import Login from "./components/Login";
 
-const { Provider } = createContext({})
+const DataContext = createContext();
 
-export default class App extends Component {
+class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      watchlist: ["mt watchlist"],
       user: {},
-      logout: () => this.logout()
+      // logout: () => this.logout()
     }
   }
 
-
   render() {
     return (
-      <Provider value={this.state}>
+      <DataContext.Provider value={this.state}>
         <div className="App">
           <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -30,8 +30,9 @@ export default class App extends Component {
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
         </div>
-      </Provider>
+      </DataContext.Provider>
     );
   }
 }
 
+export { App as default, DataContext };
