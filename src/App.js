@@ -8,7 +8,7 @@ import Login from "./components/Login";
 
 const { Provider } = createContext({})
 
-export default class App extends Component {
+class App extends Component {
 
   constructor(props) {
     super(props)
@@ -17,7 +17,6 @@ export default class App extends Component {
       logout: () => this.logout()
     }
   }
-
 
   render() {
     return (
@@ -35,3 +34,4 @@ export default class App extends Component {
   }
 }
 
+export default App
