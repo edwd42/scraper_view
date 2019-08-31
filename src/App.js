@@ -6,6 +6,7 @@ import { LandingPage } from "./components/landingPage";
 import { AppLayout } from "./components/appLayout";
 import { ProtectedRoute } from "./components/protectedRoute";
 import Login from "./components/Login";
+import Data from "./components/Data"
 
 const AppContext = createContext();
 
@@ -21,6 +22,8 @@ class App extends Component {
 
     this.watchlist = []
     this.findAllStocks()
+
+    // Data.getTimeStampSets()
 
     this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
     this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
@@ -68,15 +71,18 @@ class App extends Component {
 
   }
 
+
+
   render() {
+
+    console.log(this.state.watchlist)
+    Data.getTimeStampSets(this.state.watchlist)
 
     let timeStamp = 0;
     for (let i = 0, len = this.state.watchlist.length; i < len; i++){
         timeStamp = this.state.watchlist[i]['timeStamp']
     }
     console.log(timeStamp)
-
-
 
     const data = {
       watchlist: this.state.watchlist,
