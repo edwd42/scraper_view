@@ -7,12 +7,14 @@ import { AppLayout } from "./components/appLayout";
 import { ProtectedRoute } from "./components/protectedRoute";
 import Login from "./components/Login";
 import Data from "./components/Data"
+import Watchlist from './components/Watchlist';
 
 const AppContext = createContext();
 
 class App extends Component {
 
   constructor() {
+    
     super()
     this.state = {
       watchlist: ["mt"],
@@ -22,24 +24,25 @@ class App extends Component {
 
     this.watchlist = []
     this.findAllStocks()
-
-    // Data.getTimeStampSets()
+    console.log(this.state.watchlist)
+    // Data.makeTimeStampMap(this.state.watchlist)
 
     this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
     this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
 
-    console.log(this.state.watchlist)
-    console.log(this.state.isLoading)
   }
 
   UNSAFE_componentWillMount() {
     console.log("inside UNSAFE_componentWillMount()")
-    // this.findAllStocks()
   }
 
   componentDidMount() {
     console.log("inside componentDidMount()")
     console.log(this.state.watchlist)
+  }
+
+  componentWillUnmount(){
+    console.log("inside componentWillUnMount()")
   }
 
   handleClickGetLastScrape(event) {
@@ -57,6 +60,7 @@ class App extends Component {
       dataType: "json",
       cache: false,
       success: function (data) {
+        // console.log(data)
         this.setState({
             watchlist: data
         });
@@ -67,26 +71,23 @@ class App extends Component {
         console.log("xhr.response " + xhr.responseText);
       }
     });
-    console.log(this.state.watchlist)
+    // console.log(this.state.watchlist)
 
   }
 
 
 
   render() {
+    
+    // console.log(this.state.watchlist)
+    // let timeStampMap = Data.makeTimeStampMap(this.state.watchlist)
+    let timeStampSnapshotMap = Data.makeTimeStampSnapshotMap(this.state.watchlist)
+    let timeStampSnapshotSet = Data.makeTimeStampSnapshotSet(this.state.watchlist)
 
-    console.log(this.state.watchlist)
-    Data.getTimeStampSets(this.state.watchlist)
-
-    let timeStamp = 0;
-    for (let i = 0, len = this.state.watchlist.length; i < len; i++){
-        timeStamp = this.state.watchlist[i]['timeStamp']
-    }
-    console.log(timeStamp)
 
     const data = {
-      watchlist: this.state.watchlist,
-      timeStamp: timeStamp
+      watchlist: [...timeStampSnapshotMap.values()],
+      snapshots: [...timeStampSnapshotSet.values()]
     }
 
     return (
@@ -97,12 +98,15 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/login" component={Login} />
             <ProtectedRoute exact path="/app" component={AppLayout} />
+            <ProtectedRoute exact path="/watchlist/:timeStamp" component={Watchlist} />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
         </div>
       </AppContext.Provider>
     );
+
   }
+  
 }
 
 export { App as default, AppContext };

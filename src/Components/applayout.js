@@ -2,6 +2,7 @@ import React, { createContext } from 'react';
 import auth from "./auth";
 import Header from './Header';
 import Watchlist from './Watchlist';
+import Snapshots from './Snapshots';
 
 const { Consumer } = createContext({
   user: {
@@ -36,6 +37,7 @@ export const AppLayout = (props) => {
         Logout
       </button>
       <Watchlist/>
+      <Snapshots/>
     </div>
   );
 };
