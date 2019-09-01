@@ -78,6 +78,8 @@ class App extends Component {
 
 
   render() {
+
+    console.log(this.props)
     
     // console.log(this.state.watchlist)
     // let timeStampMap = Data.makeTimeStampMap(this.state.watchlist)
@@ -98,7 +100,7 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/login" component={Login} />
             <ProtectedRoute exact path="/app" component={AppLayout} />
-            <ProtectedRoute exact path="/watchlist/:timeStamp" component={Watchlist} />
+            <ProtectedRoute exact path="/watchlist/:timeStamp" component={(props) => <Watchlist {...props} />} />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
         </div>

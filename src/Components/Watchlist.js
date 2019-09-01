@@ -18,7 +18,6 @@ const Watchlist = () => (
         </p>
         {
           Object.values(data.watchlist).map((wl, i) => {
-            {
               if (i === 0) {
                 return (
                   <table className="table">
@@ -71,7 +70,6 @@ const Watchlist = () => (
                   </table>
                 )
               }
-            }
           })
         }
       </React.Fragment>
