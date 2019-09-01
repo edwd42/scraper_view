@@ -2,11 +2,29 @@
 class Data {
 
 	constructor() {
-    this.authenticated = true;
+		this.authenticated = true;
 	}
 
-	makeTimeStampSnapshotSet(watchlist){
-		console.log(watchlist)
+	makeNewestScrape(watchlist){
+		var newest = this.makeTimeStampSet(watchlist)
+		newest = Math.max(...newest)
+		console.log(newest)
+
+		let newestScrape = []
+
+		for(let i = 0; i < watchlist.length; i++){
+			if (watchlist[i].timeStamp === newest){
+				newestScrape.push(watchlist[i])
+			}
+		}
+		// console.log(newestScrape)
+		return newestScrape
+
+	}
+
+
+	makeTimeStampSet(watchlist){
+		// console.log(watchlist)
 		let snapshotSet = new Set();
 
 		for (let i in watchlist){
@@ -37,7 +55,7 @@ class Data {
 		timeStampSnapshotMapArr = []
 		timeStampSnapshotMap.clear()
 
-		console.log(timeStampSnapshotArr)
+		// console.log(timeStampSnapshotArr)
 		// console.log([...timeStampSnapshotArr.values()])
 
 		return timeStampSnapshotArr;

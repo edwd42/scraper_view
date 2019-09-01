@@ -75,20 +75,26 @@ class App extends Component {
 
   render() {
 
+    console.log(this.state.watchlist)
+
     const timeStampFromURL = window.location.pathname.substr(-13,13)
     console.log(timeStampFromURL)
 
+    let newestScrape = Data.makeNewestScrape(this.state.watchlist)
+    console.log(newestScrape)
+
     let timeStampSnapshotArr = Data.makeTimeStampSnapshotArr(this.state.watchlist)
-    let timeStampSnapshotSet = Data.makeTimeStampSnapshotSet(this.state.watchlist)
-    console.log([...timeStampSnapshotArr])
-    console.log(timeStampSnapshotSet)
-    console.log(Math.max(...timeStampSnapshotSet))
+    let timeStampSet = Data.makeTimeStampSet(this.state.watchlist)
+    // console.log([...timeStampSnapshotArr])
+    // console.log(timeStampSet)
+    // console.log(Math.max(...timeStampSet))
 
     const data = {
       watchlist: this.state.watchlist,
-      snapshots: [...timeStampSnapshotSet.values()],
-      timeStampFromURL: timeStampFromURL,
-      newestScape: Math.max(...timeStampSnapshotSet)
+      newestScrape: newestScrape
+      // snapshotTimeStamps: [...timeStampSet.values()],
+      // timeStampFromURL: timeStampFromURL,
+      // newestScape: Math.max(...timeStampSet)
     }
 
     return (
