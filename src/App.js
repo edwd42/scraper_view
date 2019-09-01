@@ -10,7 +10,6 @@ import Data from "./components/Data"
 import Watchlist from './components/Watchlist';
 import Snapshot from "./components/Snapshot"
 
-
 const AppContext = createContext();
 
 class App extends Component {
@@ -97,6 +96,7 @@ class App extends Component {
       // newestScape: Math.max(...timeStampSet)
     }
 
+
     return (
       <AppContext.Provider value={data}>
         {this.props.children}
@@ -116,3 +116,4 @@ class App extends Component {
 }
 
 export { App as default, AppContext };
+

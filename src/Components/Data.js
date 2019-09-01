@@ -70,6 +70,7 @@ class Data {
 		return timeStampMap;
 	}
 	
+
 }
 
 export default new Data();
