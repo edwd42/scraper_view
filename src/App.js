@@ -8,13 +8,14 @@ import { ProtectedRoute } from "./components/protectedRoute";
 import Login from "./components/Login";
 import Data from "./components/Data"
 import Watchlist from './components/Watchlist';
+import Snapshot from "./components/Snapshot"
+
 
 const AppContext = createContext();
 
 class App extends Component {
 
   constructor() {
-    
     super()
     this.state = {
       watchlist: ["mt"],
@@ -24,8 +25,7 @@ class App extends Component {
 
     this.watchlist = []
     this.findAllStocks()
-    console.log(this.state.watchlist)
-    // Data.makeTimeStampMap(this.state.watchlist)
+    // console.log(this.state.watchlist)
 
     this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
     this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
@@ -38,10 +38,10 @@ class App extends Component {
 
   componentDidMount() {
     console.log("inside componentDidMount()")
-    console.log(this.state.watchlist)
+    // console.log(this.state.watchlist)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     console.log("inside componentWillUnMount()")
   }
 
@@ -62,7 +62,7 @@ class App extends Component {
       success: function (data) {
         // console.log(data)
         this.setState({
-            watchlist: data
+          watchlist: data
         });
       }.bind(this),
       error: function (xhr, status, err) {
@@ -71,25 +71,24 @@ class App extends Component {
         console.log("xhr.response " + xhr.responseText);
       }
     });
-    // console.log(this.state.watchlist)
-
   }
-
-
 
   render() {
 
-    console.log(this.props)
-    
-    // console.log(this.state.watchlist)
-    // let timeStampMap = Data.makeTimeStampMap(this.state.watchlist)
-    let timeStampSnapshotMap = Data.makeTimeStampSnapshotMap(this.state.watchlist)
-    let timeStampSnapshotSet = Data.makeTimeStampSnapshotSet(this.state.watchlist)
+    const timeStampFromURL = window.location.pathname.substr(-13,13)
+    console.log(timeStampFromURL)
 
+    let timeStampSnapshotArr = Data.makeTimeStampSnapshotArr(this.state.watchlist)
+    let timeStampSnapshotSet = Data.makeTimeStampSnapshotSet(this.state.watchlist)
+    console.log([...timeStampSnapshotArr])
+    console.log(timeStampSnapshotSet)
+    console.log(Math.max(...timeStampSnapshotSet))
 
     const data = {
-      watchlist: [...timeStampSnapshotMap.values()],
-      snapshots: [...timeStampSnapshotSet.values()]
+      watchlist: this.state.watchlist,
+      snapshots: [...timeStampSnapshotSet.values()],
+      timeStampFromURL: timeStampFromURL,
+      newestScape: Math.max(...timeStampSnapshotSet)
     }
 
     return (
@@ -100,15 +99,14 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/login" component={Login} />
             <ProtectedRoute exact path="/app" component={AppLayout} />
-            <ProtectedRoute exact path="/watchlist/:timeStamp" component={(props) => <Watchlist {...props} />} />
+            <ProtectedRoute exact path="/watchlist" component={Watchlist} />
+            <ProtectedRoute exact path="/snapshot/:timeStampFromURL" component={Snapshot} />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
         </div>
       </AppContext.Provider>
     );
-
   }
-  
 }
 
 export { App as default, AppContext };

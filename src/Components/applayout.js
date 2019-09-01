@@ -1,43 +1,27 @@
 import React, { createContext } from 'react';
-import auth from "./auth";
+
 import Header from './Header';
 import Watchlist from './Watchlist';
-import Snapshots from './Snapshots';
-
-const { Consumer } = createContext({
-  user: {
-    firstname: "Ed",
-  }
-})
-
-const Profile = () => (
-  <Consumer>
-    {({ user }) => (
-      <div>Hello, {user.firstname}</div>
-    )}
-  </Consumer>
-)
-
-const Dashboard = () => <div><Profile /></div>
+import SnapshotsList from './SnapshotsList';
+import Dashboard from "./Dashboard"
+import { AppContext } from "../App"
 
 export const AppLayout = (props) => {
 
   return (
-    <div>
-      <Header/>
-      <h2>App Layout</h2>
-      <Dashboard/>
-      <button
-        onClick={() => {
-          auth.logout(() => {
-            props.history.push("/");
-          });
-        }}
-      >
-        Logout
-      </button>
-      <Watchlist/>
-      <Snapshots/>
-    </div>
-  );
+    <AppContext.Consumer>
+      {data => (
+        <React.Fragment>
+          <div>
+            <Header />
+            <h2>App Layout</h2>
+            <Dashboard />
+            <Watchlist />
+            <SnapshotsList />
+          </div>
+        // );
+        </React.Fragment>
+      )}
+    </AppContext.Consumer>
+  )
 };

@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import '../styles/App.css'
 import { AppContext } from "../App"
 
-const ulnodots = { listStyleType: "none" }
-// const timeStamp =({ match }) => <li>{match.params.timeStamp}</li>
-// const params = new URLSearchParams(props.location.search);
-// const timeStamp = params.get('ss'); 
+const nodots = { listStyleType: "none" }
 
 const Snapshots = () => (
 
@@ -17,10 +14,10 @@ const Snapshots = () => (
 				{
 					Object.values(data.snapshots).map((ss, i) => {
 						{
-							return(
-									<ul key={i} style={ulnodots}>
-										<li><Link to={`/watchlist/${ss}`}>{ss}</Link></li>
-									</ul>
+							return (
+								<ul key={i} style={nodots}>
+									<li><Link to={`/snapshot/${ss}`}>{ss}</Link></li>
+								</ul>
 							)
 						}
 					})
