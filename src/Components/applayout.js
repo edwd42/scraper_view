@@ -2,8 +2,6 @@ import React, { createContext } from 'react';
 
 import Header from './Header';
 import Snapshot from './Snapshot';
-// import Watchlist from './Watchlist';
-// import SnapshotsList from './SnapshotsList';
 
 import Dashboard from "./Dashboard"
 // import { AppContext } from "../App"

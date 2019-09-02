@@ -6,13 +6,13 @@ import { AppContext } from "../App"
 
 const nodots = { listStyleType: "none" }
 
-const Snapshots = () => (
+const SnapshotsList = () => (
 
 	<AppContext.Consumer>
 		{data => (
 			<React.Fragment>
 				{
-					Object.values(data.snapshots).map((ss, i) => {
+					Object.values(data.snapshotTimeStamps).map((ss, i) => {
 						{
 							return (
 								<ul key={i} style={nodots}>
@@ -27,4 +27,4 @@ const Snapshots = () => (
 	</AppContext.Consumer>
 );
 
-export default Snapshots
+export default SnapshotsList

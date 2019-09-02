@@ -14,12 +14,13 @@ const AppContext = createContext();
 
 class App extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       watchlist: ["mt"],
       timeStamp: null,
       isLoading: true,
+      isDropdown: true
     }
 
     this.watchlist = []
@@ -28,6 +29,8 @@ class App extends Component {
 
     this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
     this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
+    this.handleClickDropdown = this.handleClickDropdown.bind(this)
+    this.handleClickNewScrape = this.handleClickNewScrape.bind(this)
 
   }
 
@@ -42,6 +45,22 @@ class App extends Component {
 
   componentWillUnmount() {
     console.log("inside componentWillUnMount()")
+  }
+
+  handleClickDropdown(event){
+    event.preventDefault()
+    console.log("Dropdown got clicked")
+    this.setState(
+      state => ({
+        isDropdown: !state.isDropdown
+      })
+    )
+  }
+
+  handleClickNewScrape(){
+    // event.preventDefault()
+    let newestScrape = Data.makeNewestScrape(this.state.watchlist)
+    console.log(newestScrape)
   }
 
   handleClickGetLastScrape(event) {
@@ -90,11 +109,16 @@ class App extends Component {
 
     const data = {
       watchlist: this.state.watchlist,
-      newestScrape: newestScrape
-      // snapshotTimeStamps: [...timeStampSet.values()],
+      newestScrape: newestScrape,
+      handleClickDropdown: () => { this.handleClickDropdown() },
+      handleClickNewScrape: () => { this.handleClickNewScrape() },
+      handleClickNewScrape: () => { console.log("New Scrape got clicked") },
+      snapshotTimeStamps: [...timeStampSet.values()],
       // timeStampFromURL: timeStampFromURL,
       // newestScape: Math.max(...timeStampSet)
     }
+
+    { console.log(data.snapshotTimeStamps) }
 
 
     return (

@@ -2,7 +2,15 @@
 import React, { createContext } from 'react'
 import auth from "./auth";
 import '../styles/App.css'
+import '../styles/Dropdown.css'
 import { AppContext } from "../App"
+
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
+
+
+const options = ["Select previous scrape"]
+const defaultOption = options[""]
 
 const { Consumer } = createContext({
 	user: {
@@ -14,10 +22,11 @@ const { Consumer } = createContext({
 const Profile = () => (
 	<Consumer>
 		{({ user }) => (
-			<div>Hello, {user.firstname}</div>
+			<span>Hello, {user.firstname}</span>
 		)}
 	</Consumer>
 )
+
 
 const Dashboard = (props) => (
 	<AppContext.Consumer>
@@ -27,6 +36,7 @@ const Dashboard = (props) => (
 					<div><Profile /></div>
 					<button
 						onClick={() => {
+
 							auth.logout(() => {
 								props.history.push("/");
 							});
@@ -36,9 +46,9 @@ const Dashboard = (props) => (
           </button>
 					<div>
 						<p>
-							<button onClick={data.handleClickGetLastScrape}>New Scrape</button>
+							<button onClick={data.handleClickNewScrape}>New Scrape</button>
 							<span>&nbsp;&nbsp;&nbsp;</span>
-							<button onClick={data.handleClickGetScrapeHistory}>Scrape History</button>
+							<Dropdown className='dropdown' options={data.snapshotTimeStamps} onClick={data.handleClickDropdown} value={defaultOption} placeholder="History" />
 						</p>
 					</div>
 				</div>
