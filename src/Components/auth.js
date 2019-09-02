@@ -1,6 +1,6 @@
 class Auth {
   constructor() {
-    this.authenticated = true;
+    this.authenticated = false;
   }
 
   login(cb) {
@@ -12,7 +12,8 @@ class Auth {
   logout(cb) {
     this.authenticated = false;
     console.log("logout called")
-    setTimeout(cb, 100) // fake async
+    // setTimeout(cb, 100) // fake async
+    cb();
   }
 
   isAuthenticated() {

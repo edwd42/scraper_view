@@ -5,36 +5,43 @@ class Data {
 		this.authenticated = true;
 	}
 
-	makeNewestScrape(watchlist){
+	makeNewScrape(watchlist) {
 		var newest = this.makeTimeStampSet(watchlist)
 		newest = Math.max(...newest)
-		console.log(newest)
+		// console.log(newest)
 
-		let newestScrape = []
+		let newScrape = []
 
-		for(let i = 0; i < watchlist.length; i++){
-			if (watchlist[i].timeStamp === newest){
-				newestScrape.push(watchlist[i])
+		try {
+			if (watchlist) {
+				for (let i = 0; i < watchlist.length; i++) {
+					if (watchlist[i].timeStamp === newest) {
+						newScrape.push(watchlist[i])
+					}
+				}
 			}
+		} catch (err) {
+			console.log(err);
 		}
-		// console.log(newestScrape)
-		return newestScrape
+
+		// console.log(newScrape)
+		return newScrape
 
 	}
 
 
-	makeTimeStampSet(watchlist){
+	makeTimeStampSet(watchlist) {
 		// console.log(watchlist)
 		let snapshotSet = new Set();
 
-		for (let i in watchlist){
+		for (let i in watchlist) {
 			snapshotSet.add(watchlist[i].timeStamp)
 		}
 
 		return snapshotSet
 	}
 
-	makeTimeStampSnapshotArr(watchlist){
+	makeTimeStampSnapshotArr(watchlist) {
 		console.log(watchlist.length)
 		var timeStampSnapshotArr = []
 		var timeStampSnapshotMapArr = []
@@ -42,15 +49,15 @@ class Data {
 
 		for (let i = 1, len = watchlist.length; i < len; i++) {
 			timeStampSnapshotMap.clear()
-				if(watchlist[i].timeStamp === watchlist[i-1].timeStamp){
-					timeStampSnapshotMap.set(String(watchlist[i].timeStamp+":"+watchlist[i].symbol), watchlist[i])
-					timeStampSnapshotMapArr.push(timeStampSnapshotMap.get(String(watchlist[i].timeStamp+":"+watchlist[i].symbol)))
-					// console.log(timeStampSnapshotMapArr)
-				} else {
-					timeStampSnapshotArr.push(timeStampSnapshotMapArr)
-					timeStampSnapshotMapArr = []
-				}
-		} 
+			if (watchlist[i].timeStamp === watchlist[i - 1].timeStamp) {
+				timeStampSnapshotMap.set(String(watchlist[i].timeStamp + ":" + watchlist[i].symbol), watchlist[i])
+				timeStampSnapshotMapArr.push(timeStampSnapshotMap.get(String(watchlist[i].timeStamp + ":" + watchlist[i].symbol)))
+				// console.log(timeStampSnapshotMapArr)
+			} else {
+				timeStampSnapshotArr.push(timeStampSnapshotMapArr)
+				timeStampSnapshotMapArr = []
+			}
+		}
 
 		timeStampSnapshotMapArr = []
 		timeStampSnapshotMap.clear()
@@ -61,15 +68,15 @@ class Data {
 		return timeStampSnapshotArr;
 	}
 
-	makeTimeStampMap(watchlist){
+	makeTimeStampMap(watchlist) {
 		var timeStampMap = new Map();
-		
-		for (let i in watchlist){
-			timeStampMap.set(String(watchlist[i].timeStamp)+":"+watchlist[i].symbol, watchlist[i])
+
+		for (let i in watchlist) {
+			timeStampMap.set(String(watchlist[i].timeStamp) + ":" + watchlist[i].symbol, watchlist[i])
 		}
 		return timeStampMap;
 	}
-	
+
 
 }
 

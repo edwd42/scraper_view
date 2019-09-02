@@ -12,9 +12,9 @@ const Snapshot = () => (
 	<AppContext.Consumer>
 		{data => (
 			<React.Fragment>
-				{console.log(data.newestScrape)}
+				{console.log(data.newScrape)}
 				{
-					Object.values(data.newestScrape).map((wl, i) => {
+					Object.values(data.newScrape).map((wl, i) => {
 						if (i === 0) {
 							return (
 								<table className="table">

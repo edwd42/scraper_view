@@ -1,27 +1,20 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
 import Header from './Header';
 import Snapshot from './Snapshot';
 
-import Dashboard from "./Dashboard"
-// import { AppContext } from "../App"
+import {Dashboard} from "./Dashboard"
 
-export const AppLayout = () => {
-
+export const AppLayout = (props) => {
+  console.log(props)
   return (
-    // <AppContext.Consumer>
-    //   {data => (
-        <React.Fragment>
-          <div>
-            <Header />
-            <h2>App Layout</h2>
-            <Dashboard />
-            {/* <Watchlist /> */}
-            <Snapshot />
-          </div>
-        {/* // ); */}
-        </React.Fragment>
-    //   )}
-    // </AppContext.Consumer>
+    <React.Fragment>
+      <div>
+        <Header />
+        <h2>App Layout</h2>
+        <Dashboard />
+        <Snapshot />
+      </div>
+    </React.Fragment>
   )
 };

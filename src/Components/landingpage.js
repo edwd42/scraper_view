@@ -3,7 +3,7 @@ import auth from "./auth";
 import Header from './Header'
 
 export const LandingPage = props => {
-
+  console.log(props)
   return (
     <div>
       <Header/>

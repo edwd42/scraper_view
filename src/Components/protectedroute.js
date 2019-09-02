@@ -6,6 +6,7 @@ export const ProtectedRoute = ({
   component: Component,
   ...rest
 }) => {
+  // console.log(props.location)
   return (
     <Route
       {...rest}

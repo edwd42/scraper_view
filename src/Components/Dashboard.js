@@ -18,7 +18,6 @@ const { Consumer } = createContext({
 	}
 })
 
-
 const Profile = () => (
 	<Consumer>
 		{({ user }) => (
@@ -27,8 +26,7 @@ const Profile = () => (
 	</Consumer>
 )
 
-
-const Dashboard = (props) => (
+export const Dashboard = props => (
 	<AppContext.Consumer>
 		{data => (
 			<React.Fragment>
@@ -36,7 +34,6 @@ const Dashboard = (props) => (
 					<div><Profile /></div>
 					<button
 						onClick={() => {
-
 							auth.logout(() => {
 								props.history.push("/");
 							});
@@ -57,4 +54,4 @@ const Dashboard = (props) => (
 	</AppContext.Consumer>
 )
 
-export default Dashboard
+// export default Dashboard
