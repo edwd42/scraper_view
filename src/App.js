@@ -3,7 +3,7 @@ import React, { Component, createContext } from 'react';
 import { Route, Switch } from "react-router-dom";
 import $ from 'jquery';
 import { LandingPage } from "./components/landingPage";
-import { AppLayout } from "./components/appLayout";
+import { AppLayout } from "./components/applayout";
 import { ProtectedRoute } from "./components/protectedRoute";
 import Login from "./components/Login";
 import Data from "./components/Data"
