@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { createContext } from 'react'
-import auth from "./auth";
+// import auth from "./auth";
 import '../styles/App.css'
 import '../styles/Dropdown.css'
 import { AppContext } from "../App"
@@ -31,8 +31,8 @@ export const Dashboard = props => (
 		{data => (
 			<React.Fragment>
 				<div>
-					<div><Profile /></div>
-					<button
+					<div><br/><Profile /></div>
+					{/* <button
 						onClick={() => {
 							auth.logout(() => {
 								props.history.push("/");
@@ -40,7 +40,7 @@ export const Dashboard = props => (
 						}}
 					>
 						Logout
-          </button>
+          </button> */}
 					<div>
 						<p>
 							<button onClick={data.handleClickNewScrape}>New Scrape</button>
