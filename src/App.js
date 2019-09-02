@@ -2,9 +2,9 @@
 import React, { Component, createContext } from 'react';
 import { Route, Switch } from "react-router-dom";
 import $ from 'jquery';
-import { LandingPage } from "./components/landingPage";
+import { LandingPage } from "./components/landingpage";
 import { AppLayout } from "./components/applayout";
-import { ProtectedRoute } from "./components/protectedRoute";
+import { ProtectedRoute } from "./components/protectedroute";
 import Login from "./components/Login";
 import Data from "./components/Data"
 // import Watchlist from './components/Watchlist';
