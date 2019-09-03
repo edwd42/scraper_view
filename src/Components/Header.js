@@ -8,7 +8,7 @@ function Header(){
 	}
 	return(
 		<header>
-			<h1 style={ styles }>CareerDevs Capstone Scraper Project - MVP</h1>
+			<h1 style={ styles }>CareerDevs Capstone Yahoo Scraper Project - MVP</h1>
 		</header>
 	)
 }

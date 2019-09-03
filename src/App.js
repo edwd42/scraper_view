@@ -6,6 +6,7 @@ import { LandingPage } from "./components/landingpage";
 import { AppLayout } from "./components/applayout";
 import { ProtectedRoute } from "./components/protectedroute";
 import Login from "./components/Login";
+import about from "./components/About";
 import Data from "./components/Data"
 import Snapshot from "./components/Snapshot"
 import axios from 'axios';
@@ -127,6 +128,7 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route exact path="/" component={LandingPage} />
+            <Route exact path="/about" component={about} />
             <Route exact path="/login" component={Login} />
             <ProtectedRoute exact path="/app" component={AppLayout} />
             <ProtectedRoute exact path="/snapshot/:previousScrape" component={Snapshot} />

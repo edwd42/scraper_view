@@ -35,17 +35,17 @@ const Snapshot = () => (
 											<th style={leftAlign}>Symbol</th>
 											<th>Last Price</th>
 											<th>Todays Change</th>
-											<th>Volume</th>
+											<th>&nbsp;Volume</th>
 											<th>Market Cap</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr key={i}>
 											<td style={leftAlign}>{wl.symbol}</td>
-											<td>{wl.lastPrice}</td>
+											<td>{parseFloat(wl.lastPrice).toFixed(2)}</td>
 											<td>{wl.todaysChange}</td>
-											<td>{wl.volume}</td>
-											<td>{wl.marketCap}</td>
+											<td>&nbsp;{parseFloat(wl.volume).toFixed(2)}</td>
+											<td>{parseFloat(wl.marketCap).toFixed(2)}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -59,17 +59,17 @@ const Snapshot = () => (
 											<th style={leftAlign}>Symbol</th>
 											<th>Last Price</th>
 											<th>Todays Change</th>
-											<th>Volume</th>
+											<th>&nbsp;Volume</th>
 											<th>Market Cap</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr key={i}>
 											<td style={leftAlign}>{wl.symbol}</td>
-											<td>{wl.lastPrice}</td>
+											<td>{parseFloat(wl.lastPrice).toFixed(2)}</td>
 											<td>{wl.todaysChange}</td>
-											<td>{wl.volume}</td>
-											<td>{wl.marketCap}</td>
+											<td>&nbsp;{parseFloat(wl.volume).toFixed(2)}</td>
+											<td>{parseFloat(wl.marketCap).toFixed(2)}</td>
 										</tr>
 									</tbody>
 								</table>
