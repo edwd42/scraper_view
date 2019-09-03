@@ -6,13 +6,12 @@ import Snapshot from './Snapshot';
 import { Dashboard } from "./Dashboard"
 
 export const AppLayout = props => {
-  console.log(props)
   return (
     <React.Fragment>
       <div>
         <Header />
         <h2>App Layout</h2>
-        
+
         <button
           onClick={() => {
             auth.logout(() => {
@@ -22,7 +21,7 @@ export const AppLayout = props => {
         >
           Logout
           </button>
-          <Dashboard />
+        <Dashboard />
         <Snapshot />
       </div>
     </React.Fragment>

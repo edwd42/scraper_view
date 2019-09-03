@@ -7,7 +7,6 @@ import { AppLayout } from "./components/applayout";
 import { ProtectedRoute } from "./components/protectedroute";
 import Login from "./components/Login";
 import Data from "./components/Data"
-// import Watchlist from './components/Watchlist';
 import Snapshot from "./components/Snapshot"
 import axios from 'axios';
 
@@ -21,72 +20,52 @@ class App extends Component {
       watchlist: ["mt"],
       timeStamp: null,
       isLoading: true,
-      isDropdown: true,
+      isDropdown: false,
+      previousScrape: null,
+      selected: 'mt',
+      value: 'Scrape History',
       logout: () => this.logout(),
       user: {
         firstname: "Ed"
       }
     }
 
-    // this.watchlist = []
-
-    // this.findAllStocks()
-    // console.log(this.state.watchlist)
-    // Data.makeNewScrape(this.state.watchlist)
-
     this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
     this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
-    this.handleClickDropdown = this.handleClickDropdown.bind(this)
+    this._onSelect = this._onSelect.bind(this)
+    this._onSubmit = this._onSubmit.bind(this)
     this.handleClickNewScrape = this.handleClickNewScrape.bind(this)
 
   }
 
-  // UNSAFE_componentWillMount() {
-  //   // console.log("inside UNSAFE_componentWillMount()")
-  //   // this.findAllStocks()
-  //   // console.log(this.state.watchlist)
-  //   // Data.makeNewScrape(this.state.watchlist)
-  // }
-
   componentDidMount() {
-    // console.log("inside componentDidMount()")
-    // console.log(this.state.watchlist)
     this.findAllStocks()
     Data.makeNewScrape(this.state.watchlist)
   }
 
-  // componentWillUnmount() {
-  //   console.log("inside componentWillUnMount()")
-  // }
+  _onSelect(e) {
+    e.preventDefault();
+    this.setState({previousScrape: e.target.value});
 
-  handleClickDropdown(event) {
-    event.preventDefault()
-    console.log("Dropdown got clicked")
-    this.setState(
-      state => ({
-        isDropdown: !state.isDropdown
-      })
-    )
+    return this.state.previousScrape
+  }
+
+  _onSubmit(e) {
+    e.preventDefault();
   }
 
   async handleClickNewScrape() {
-    // event.preventDefault()
-    console.log("New Scrape button clicked")
-
+    this.setState({ previousScrape: null });
     try {
       let response = await axios.get(`http://localhost:8081/scrape`)
       if (response) {
         this.setState({ watchlist: response.data });
         await this.findAllStocks()
       }
-
     } catch (err) {
       console.log(err);
     }
-
-    console.log(this.state.watchlist)
     let newScrape = Data.makeNewScrape(this.state.watchlist)
-    console.log(newScrape)
   }
 
   handleClickGetLastScrape(event) {
@@ -98,14 +77,11 @@ class App extends Component {
   }
 
   findAllStocks() {
-    console.log("inside findAllStocks()")
-
     $.ajax({
       url: "http://localhost:8081/rest/api/findAllStocks/",
       dataType: "json",
       cache: false,
       success: function (data) {
-        // console.log(data)
         this.setState({
           watchlist: data
         });
@@ -120,33 +96,20 @@ class App extends Component {
 
   render() {
 
-    // console.log(this.state.watchlist)
-
-    // const timeStampFromURL = window.location.pathname.substr(-13, 13)
-    // console.log(timeStampFromURL)
+    // const defaultOption = this.state.selected
 
     let newScrape = Data.makeNewScrape(this.state.watchlist)
-    // console.log(newScrape)
-
-    // let timeStampSnapshotArr = Data.makeTimeStampSnapshotArr(this.state.watchlist)
+    let previousScrape = Data.makePreviousScrape(this.state.previousScrape, this.state.watchlist)
     let timeStampSet = Data.makeTimeStampSet(this.state.watchlist)
-    // console.log([...timeStampSnapshotArr])
-    // console.log(timeStampSet)
-    // console.log(Math.max(...timeStampSet))
 
     const data = {
-      watchlist: this.state.watchlist,
       newScrape: newScrape,
-      handleClickDropdown: () => { this.handleClickDropdown() },
+      previousScrape: previousScrape,
+      _onSelect: (e) => { this._onSelect(e) },
+      _onSubmit: (e) => { this._onSubmit(e) },
       handleClickNewScrape: () => { this.handleClickNewScrape() },
-      // handleClickNewScrape: () => { console.log("New Scrape got clicked") },
-      snapshotTimeStamps: [...timeStampSet.values()],
-      // timeStampFromURL: timeStampFromURL,
-      // newestScape: Math.max(...timeStampSet)
+      values: [...timeStampSet.values()],
     }
-
-    // { console.log(data.snapshotTimeStamps) }
-
 
     return (
       <AppContext.Provider value={data}>
@@ -156,8 +119,7 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/login" component={Login} />
             <ProtectedRoute exact path="/app" component={AppLayout} />
-            {/* <ProtectedRoute exact path="/watchlist" component={Watchlist} /> */}
-            <ProtectedRoute exact path="/snapshot/:timeStampFromURL" component={Snapshot} />
+            <ProtectedRoute exact path="/snapshot/:previousScrape" component={Snapshot} />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
         </div>

@@ -1,16 +1,7 @@
 // @ts-nocheck
 import React, { createContext } from 'react'
-// import auth from "./auth";
 import '../styles/App.css'
-import '../styles/Dropdown.css'
 import { AppContext } from "../App"
-
-import Dropdown from 'react-dropdown'
-import 'react-dropdown/style.css'
-
-
-const options = ["Select previous scrape"]
-const defaultOption = options[""]
 
 const { Consumer } = createContext({
 	user: {
@@ -29,23 +20,21 @@ const Profile = () => (
 export const Dashboard = props => (
 	<AppContext.Consumer>
 		{data => (
-			<React.Fragment>
+			< React.Fragment >
 				<div>
-					<div><br/><Profile /></div>
-					{/* <button
-						onClick={() => {
-							auth.logout(() => {
-								props.history.push("/");
-							});
-						}}
-					>
-						Logout
-          </button> */}
+					<div><br /><Profile /></div>
 					<div>
 						<p>
 							<button onClick={data.handleClickNewScrape}>New Scrape</button>
 							<span>&nbsp;&nbsp;&nbsp;</span>
-							<Dropdown className='dropdown' options={data.snapshotTimeStamps} onClick={data.handleClickDropdown} value={defaultOption} placeholder="History" />
+							<select value={data.value} onChange={(event) => data._onSelect(event)}>
+								<option selected="selected">Previous Scrapes</option>
+								{data.values.map(item => (
+									<option key={item} value={item}>
+										{item}
+									</option>
+								))}
+							</select>
 						</p>
 					</div>
 				</div>
@@ -53,5 +42,3 @@ export const Dashboard = props => (
 		)}
 	</AppContext.Consumer>
 )
-
-// export default Dashboard

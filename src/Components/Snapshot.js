@@ -12,9 +12,12 @@ const Snapshot = () => (
 	<AppContext.Consumer>
 		{data => (
 			<React.Fragment>
-				{console.log(data.newScrape)}
 				{
-					Object.values(data.newScrape).map((wl, i) => {
+					Object.values(
+						data.previousScrape.length === 0 ?
+						data.newScrape :
+						data.previousScrape
+						).map((wl, i) => {
 						if (i === 0) {
 							return (
 								<table className="table">
