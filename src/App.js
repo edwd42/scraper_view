@@ -19,7 +19,7 @@ class App extends Component {
     this.state = {
       watchlist: ["mt"],
       timeStamp: null,
-      isLoading: true,
+      loading: false,
       isDropdown: false,
       previousScrape: null,
       selected: 'mt',
@@ -55,7 +55,10 @@ class App extends Component {
   }
 
   async handleClickNewScrape() {
-    this.setState({ previousScrape: null });
+    this.setState({
+      previousScrape: null,
+      loading: true
+    });
     try {
       let response = await axios.get(`http://localhost:8081/scrape`)
       if (response) {
@@ -65,6 +68,12 @@ class App extends Component {
     } catch (err) {
       console.log(err);
     }
+
+    this.setState({
+      previousScrape: null,
+      loading: false
+    });
+    console.log(this.state.loading)
     let newScrape = Data.makeNewScrape(this.state.watchlist)
   }
 
@@ -99,6 +108,7 @@ class App extends Component {
     let newScrape = Data.makeNewScrape(this.state.watchlist)
     let previousScrape = Data.makePreviousScrape(this.state.previousScrape, this.state.watchlist)
     let timeStampSet = Data.makeTimeStampSet(this.state.watchlist)
+    let loading = this.state.loading
 
     const data = {
       newScrape: newScrape,
@@ -107,7 +117,8 @@ class App extends Component {
       _onSubmit: (e) => { this._onSubmit(e) },
       handleClickNewScrape: () => { this.handleClickNewScrape() },
       values: [...timeStampSet.values()],
-      formatDate: (epochTime) => { this.formatDate(epochTime) }
+      formatDate: (epochTime) => { this.formatDate(epochTime) },
+      loading: loading
     }
 
     return (

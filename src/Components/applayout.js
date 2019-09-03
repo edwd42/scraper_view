@@ -10,7 +10,6 @@ export const AppLayout = props => {
     <React.Fragment>
       <div>
         <Header />
-        <h2>App Layout</h2>
 
         <button
           onClick={() => {
