@@ -20,6 +20,7 @@ const Profile = () => (
 export const Dashboard = props => (
 	<AppContext.Consumer>
 		{data => (
+
 			< React.Fragment >
 				<div>
 					<div><br /><Profile /></div>
@@ -29,9 +30,9 @@ export const Dashboard = props => (
 							<span>&nbsp;&nbsp;&nbsp;</span>
 							<select value={data.value} onChange={(event) => data._onSelect(event)}>
 								<option selected="selected">Previous Scrapes</option>
-								{data.values.map(item => (
+								{data.values.map((item) => (
 									<option key={item} value={item}>
-										{item}
+										{new Date(item).toLocaleString()}
 									</option>
 								))}
 							</select>

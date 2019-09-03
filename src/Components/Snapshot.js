@@ -6,6 +6,13 @@ import { AppContext } from "../App"
 const leftAlign = { textAlign: "left" }
 const collapse = { visibility: "collapse" }
 const hide = { display: "none" }
+const caption = {
+	backgroundColor: "lightsteelblue",
+	padding: "12px 32px",
+	textDecoration: "none",
+	fontSize: "18px"
+}
+
 
 const Snapshot = () => (
 
@@ -15,13 +22,14 @@ const Snapshot = () => (
 				{
 					Object.values(
 						data.previousScrape.length === 0 ?
-						data.newScrape :
-						data.previousScrape
-						).map((wl, i) => {
+							data.newScrape :
+							data.previousScrape
+					).map((wl, i) => {
+						let date = new Date(wl.timeStamp)
 						if (i === 0) {
 							return (
 								<table className="table">
-									<caption>Time Stamp for this scrape: {wl.timeStamp}</caption>
+									<caption style={caption}>Time Stamp for this scrape:<br/>{new Date(date).toLocaleString()}</caption>
 									<thead>
 										<tr>
 											<th style={leftAlign}>Symbol</th>

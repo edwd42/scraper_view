@@ -29,6 +29,10 @@ class Data {
 			if (watchlist) {
 				for (let i = 0; i < watchlist.length; i++) {
 					if (watchlist[i].timeStamp == previousScrape) {
+						// console.log(watchlist[i].timeStamp)
+						// this.formatDate(watchlist[i].timeStamp)
+						// watchlist[i].timeStamp = this.formatDate(watchlist[i].timeStamp)
+						// console.log(watchlist[i].timeStamp)
 						priorScrape.push(watchlist[i])
 					}
 				}

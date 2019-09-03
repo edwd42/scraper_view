@@ -45,7 +45,7 @@ class App extends Component {
 
   _onSelect(e) {
     e.preventDefault();
-    this.setState({previousScrape: e.target.value});
+    this.setState({ previousScrape: e.target.value });
 
     return this.state.previousScrape
   }
@@ -96,8 +96,6 @@ class App extends Component {
 
   render() {
 
-    // const defaultOption = this.state.selected
-
     let newScrape = Data.makeNewScrape(this.state.watchlist)
     let previousScrape = Data.makePreviousScrape(this.state.previousScrape, this.state.watchlist)
     let timeStampSet = Data.makeTimeStampSet(this.state.watchlist)
@@ -109,6 +107,7 @@ class App extends Component {
       _onSubmit: (e) => { this._onSubmit(e) },
       handleClickNewScrape: () => { this.handleClickNewScrape() },
       values: [...timeStampSet.values()],
+      formatDate: (epochTime) => { this.formatDate(epochTime) }
     }
 
     return (
