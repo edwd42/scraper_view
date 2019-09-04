@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @ts-nocheck
 import React, { Component, createContext } from 'react';
 import { Route, Switch } from "react-router-dom";
@@ -12,9 +13,17 @@ import Snapshot from "./components/Snapshot"
 import axios from 'axios';
 
 const AppContext = createContext();
+=======
+import React, { Component } from 'react'
+import './components/styles/App.css'
+import Header from './components/Header'
+import Watchlist from './components/Watchlist'
+import Login_Register from './components/Login_Register'
+>>>>>>> old-login
 
 class App extends Component {
 
+<<<<<<< HEAD
   constructor(props) {
     super(props)
     this.state = {
@@ -29,6 +38,14 @@ class App extends Component {
       user: {
         firstname: "Ed"
       }
+=======
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoggedIn: false,
+      isLoginOpen: true,
+      isRegisterOpen: false
+>>>>>>> old-login
     }
 
     this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
@@ -122,6 +139,15 @@ class App extends Component {
       loading: loading
     }
 
+    if (!this.state.isLoggedIn){
+      return (
+        <div className="App">
+          <Header/>
+          <h1>You are currently logged { status }</h1>
+          <Login_Register/>
+      </div>
+      )
+    }
     return (
       <AppContext.Provider value={data}>
         {this.props.children}

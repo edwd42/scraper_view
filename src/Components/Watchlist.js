@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @ts-nocheck
 import React from 'react'
 import '../styles/App.css'
@@ -89,6 +90,66 @@ const Watchlist = () => (
                   </tbody>
                 </table>
               )
+=======
+import React, { Component } from 'react'
+import $ from 'jquery';
+import './styles/App.css'
+
+export default class Watchlist extends Component {
+
+    constructor() {
+		super()
+		this.state = {
+            watchlist: [],
+            timeStamp: null,
+            isLoading: false
+        }
+        this.handleClickGetLastScrape = this.handleClickGetLastScrape.bind(this)
+        this.handleClickGetScrapeHistory = this.handleClickGetScrapeHistory.bind(this)
+
+    }
+    
+    UNSAFE_componentWillMount(){
+        this.getLastScrape()
+    }
+
+    componentDidMount(){
+        this.setState({isLoading: true})
+    }
+
+    // could not get fetch to work correctly
+    // this.state.watchlist throws an error
+    // getData(){
+    //     fetch('http://localhost:8081/rest/api/findLastScrape/')
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    //     .then(data => {
+    //         this.setState({
+    //             isLoading: false,
+    //             watchlist: data
+    //         })
+    //     })
+    //     console.log("this.state.watchlist.length == ", this.state.watchlist.length)
+    // }
+
+    getLastScrape(){
+        $.ajax({
+            url: 'http://localhost:8081/rest/api/findLastScrape/',
+            dataType:'json',
+            cache: false,
+            success: function(data){
+                this.setState({
+                    watchlist: data,
+                    isLoading: false
+                });
+                console.log("getData() returns ", data);
+                console.log("this.state.watchlist.length == ", this.state.watchlist.length)
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.log("err " + err);
+                console.log("status " + status);
+                console.log("xhr.response " + xhr.responseText);
+>>>>>>> old-login
             }
           })
         }
