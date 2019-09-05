@@ -1,4 +1,5 @@
 import React from "react";
+import history from "./history";
 import auth from "./auth";
 import Header from "./Header";
 import Snapshot from "./Snapshot";
@@ -6,7 +7,7 @@ import Snapshot from "./Snapshot";
 import { Dashboard } from "./Dashboard";
 
 export const AppLayout = props => {
-  console.log(props);
+  console.log({ props });
   return (
     <React.Fragment>
       <div>
@@ -15,7 +16,7 @@ export const AppLayout = props => {
         <button
           onClick={() => {
             auth.logout(() => {
-              props.history.push("/");
+              history.push("/");
             });
           }}
         >

@@ -114,6 +114,7 @@ class App extends Component {
     let loading = this.state.loading;
 
     const data = {
+      // props: props,
       newScrape: newScrape,
       previousScrape: previousScrape,
       _onSelect: e => {

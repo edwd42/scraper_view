@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "./styles/_loginSty.scss";
 import LoginBox from "./LoginBox";
-import RegisterBox from "./RegisterBox";
+import RegisterBox from "./oRegisterBox";
 import Header from "./Header";
 
-// const Login_RegisterContext = createContext(0);
+const initialValue = "Data";
+export const UserContext = createContext(initialValue);
 
-const LoginRegister = props => {
-  console.log(props);
+// function LoginRegister(props) {
+export const LoginRegister = props => {
+  console.log({ props });
+  console.log(props.history);
 
   const [isLoginOpen, setIsLoginOpen] = useState(true);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -24,38 +27,41 @@ const LoginRegister = props => {
     setIsRegisterOpen(prevIsRegisterOpen => !prevIsRegisterOpen);
   };
 
-  // render() {
+  // const data = {
+  //   props: this.props.history
+  // };
+
   return (
-    <>
-      {/* <Login_RegisterContext value={props}> */}
-      <Header />
-      <div className="root-container">
-        <h1>Welcome, please login or register</h1>
-        <div className="box-controller">
-          <div
-            className={
-              "controller " + (isLoginOpen ? "selected-controller" : "")
-            }
-            onClick={showLoginBox}
-          >
-            Login
+    <React.Fragment>
+      <UserContext.Provider value={initialValue}>
+        {/* {props.children} */}
+        <Header />
+        <div className="root-container">
+          <h1>Welcome, please login or register</h1>
+          <div className="box-controller">
+            <div
+              className={
+                "controller " + (isLoginOpen ? "selected-controller" : "")
+              }
+              onClick={showLoginBox}
+            >
+              Login
+            </div>
+            <div
+              className={
+                "controller " + (isRegisterOpen ? "selected-controller" : "")
+              }
+              onClick={showRegisterBox}
+            >
+              Register
+            </div>
           </div>
-          <div
-            className={
-              "controller " + (isRegisterOpen ? "selected-controller" : "")
-            }
-            onClick={showRegisterBox}
-          >
-            Register
-          </div>
+          {isLoginOpen && <LoginBox props={props.history} />}
+          {isRegisterOpen && <RegisterBox props={props} />}
         </div>
-        {isLoginOpen && <LoginBox />}
-        {isRegisterOpen && <RegisterBox />}
-      </div>
-      {/* </Login_RegisterContext> */}
-    </>
+      </UserContext.Provider>
+    </React.Fragment>
   );
-  // }
 };
 
 export default LoginRegister;

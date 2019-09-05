@@ -1,17 +1,22 @@
 //Login Box
-import React from "react";
+import React, { useContext } from "react";
+import history from "./history";
+
 import "./styles/_loginSty.scss";
 import auth from "./auth";
+import { UserContext } from "./LoginRegister";
 
 const LoginBox = props => {
-  console.log(props);
-  // submitLogin(e) {}
+  console.log({ props });
+  console.log(history);
 
-  //   render() {
+  const user = useContext(UserContext);
+
   return (
     <>
       <div className="inner-container">
-        {/* <div className="header">Login</div> */}
+        <div className="header">Login</div>
+
         <div className="box">
           <div className="input-group">
             <label htmlFor="username">Username</label>
@@ -45,7 +50,7 @@ const LoginBox = props => {
             className="login-btn"
             onClick={() => {
               auth.login(() => {
-                props.history.push("/app");
+                history.push("/app");
               });
             }}
           >
@@ -59,7 +64,6 @@ const LoginBox = props => {
       </div>
     </>
   );
-  //   }
 };
 
 export default LoginBox;

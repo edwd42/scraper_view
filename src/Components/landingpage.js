@@ -1,12 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types";
+// import { withRouter } from "react-router";
 import auth from "./auth";
 import Header from "./Header";
-// import LoginBox from "./LoginBox";
-// import RegisterBox from "./RegisterBox";
+
 import yahoo_finance from "../assets/images/yahoo_finance.png";
 
 export const LandingPage = props => {
-  console.log(props);
+  console.log({ props });
+  // console.log(props.history);
+  // console.log(props.match);
+  // console.log(props.location);
+
+  const propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
+  console.log(propTypes.history);
+
   return (
     <div>
       <Header />
