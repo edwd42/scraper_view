@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
-import * as serviceWorker from './serviceWorker';
-import './styles/index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router } from "react-router-dom";
+import * as serviceWorker from "./serviceWorker";
+import "./styles/index.css";
+import App from "./App";
 import { createBrowserHistory } from "history";
 
 // https://github.com/fernandoporazzi/react-router-react-context-api/blob/master/src/js/index.js
-const history =  createBrowserHistory();
+const history = createBrowserHistory();
 
 ReactDOM.render(
-  <BrowserRouter history={history}>
+  <Router history={history}>
     <App />
-  </BrowserRouter>,
+  </Router>,
   document.getElementById("root")
 );
 

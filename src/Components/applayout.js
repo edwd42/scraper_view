@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
 import auth from "./auth";
-import Header from './Header';
-import Snapshot from './Snapshot';
+import Header from "./Header";
+import Snapshot from "./Snapshot";
 
-import { Dashboard } from "./Dashboard"
+import { Dashboard } from "./Dashboard";
 
 export const AppLayout = props => {
+  console.log(props);
   return (
     <React.Fragment>
       <div>
@@ -19,10 +20,10 @@ export const AppLayout = props => {
           }}
         >
           Logout
-          </button>
+        </button>
         <Dashboard />
         <Snapshot />
       </div>
     </React.Fragment>
-  )
+  );
 };

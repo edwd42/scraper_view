@@ -1,26 +1,31 @@
 //Register Box
-import React, { Component } from "react";
+import React from "react";
 import "./styles/_loginSty.scss";
-import Login_Register from "./Login_Register";
+import auth from "./auth";
+// import Login_Register from "./Login_Register";
 // import LoginBox from './LoginBox'
 
-export default class RegisterBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      errors: [],
-      pwdState: null
-      // 		showLogin: !showLogin,
-      // 		showRegister: !showRegister,
-      // 		isRegistered: !isRegistered,
-      // 		isLoginOpen: !isLoginOpen,
-      //   isRegisterOpen: !isRegisterOpen
-    };
-  }
+// export default class RegisterBox extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       username: "",
+//       email: "",
+//       password: "",
+//       errors: [],
+//       pwdState: null
+//       // 		showLogin: !showLogin,
+//       // 		showRegister: !showRegister,
+//       // 		isRegistered: !isRegistered,
+//       // 		isLoginOpen: !isLoginOpen,
+//       //   isRegisterOpen: !isRegisterOpen
+//     };
+//   }
 
+const RegisterBox = props => {
+  console.log(props);
+
+  /*
   //Add New Error Object to the array {elm: msg}
   showValidationErr(elm, msg) {
     this.setState(prevState => ({
@@ -90,53 +95,56 @@ export default class RegisterBox extends React.Component {
       this.showValidationErr("password", "Password Cannot be empty!");
     }
 
-    this.setState((prevState, props) => {
-      return {
-        isRegistered: true,
-        showRegister: false,
-        showLogin: true,
-        isLoginOpen: true,
-        isRegisterOpen: false
-      };
-    });
+    // this.setState((prevState, props) => {
+    //   return {
+    //     isRegistered: true,
+    //     showRegister: false,
+    //     showLogin: true,
+    //     isLoginOpen: true,
+    //     isRegisterOpen: false
+    //   };
+    // });
+  }
+*/
+  // render() {
+
+  /*
+  //NULL by default (help us check when rendering)
+  let usernameErr = null,
+    passwordErr = null,
+    emailErr = null;
+  //Loop and find which ones has the error
+  for (let err of this.state.errors) {
+    //Assign the validation error message
+    if (err.elm == "username") {
+      usernameErr = err.msg;
+    }
+    if (err.elm == "password") {
+      passwordErr = err.msg;
+    }
+    if (err.elm == "email") {
+      emailErr = err.msg;
+    }
+    //No (else if or else) statements cause we need to check for all possible elements
   }
 
-  render() {
-    //NULL by default (help us check when rendering)
-    let usernameErr = null,
-      passwordErr = null,
-      emailErr = null;
-    //Loop and find which ones has the error
-    for (let err of this.state.errors) {
-      //Assign the validation error message
-      if (err.elm == "username") {
-        usernameErr = err.msg;
-      }
-      if (err.elm == "password") {
-        passwordErr = err.msg;
-      }
-      if (err.elm == "email") {
-        emailErr = err.msg;
-      }
-      //No (else if or else) statements cause we need to check for all possible elements
-    }
+  let pwdWeak = false,
+    pwdMedium = false,
+    pwdStrong = false;
 
-    let pwdWeak = false,
-      pwdMedium = false,
-      pwdStrong = false;
-
-    if (this.state.pwdState == "weak") {
-      pwdWeak = true;
-    } else if (this.state.pwdState == "medium") {
-      pwdWeak = true;
-      pwdMedium = true;
-    } else if (this.state.pwdState == "strong") {
-      pwdWeak = true;
-      pwdMedium = true;
-      pwdStrong = true;
-    }
-
-    return (
+  if (this.state.pwdState == "weak") {
+    pwdWeak = true;
+  } else if (this.state.pwdState == "medium") {
+    pwdWeak = true;
+    pwdMedium = true;
+  } else if (this.state.pwdState == "strong") {
+    pwdWeak = true;
+    pwdMedium = true;
+    pwdStrong = true;
+  }
+*/
+  return (
+    <>
       <div className="inner-container">
         <div className="header">Register</div>
         <div className="box">
@@ -147,11 +155,11 @@ export default class RegisterBox extends React.Component {
               name="username"
               className="login-input"
               placeholder="Username"
-              onChange={this.onUsernameChange.bind(this)}
+              // onChange={this.onUsernameChange.bind(this)}
             />
-            <small className="danger-error">
-              {usernameErr ? usernameErr : ""}
-            </small>
+            {/* <small className="danger-error">
+            {usernameErr ? usernameErr : ""}
+          </small> */}
           </div>
 
           <div className="input-group">
@@ -161,9 +169,9 @@ export default class RegisterBox extends React.Component {
               name="email"
               className="login-input"
               placeholder="Email"
-              onChange={this.onEmailChange.bind(this)}
+              // onChange={this.onEmailChange.bind(this)}
             />
-            <small className="danger-error">{emailErr ? emailErr : ""}</small>
+            {/* <small className="danger-error">{emailErr ? emailErr : ""}</small> */}
           </div>
 
           <div className="input-group">
@@ -173,37 +181,38 @@ export default class RegisterBox extends React.Component {
               name="password"
               className="login-input"
               placeholder="Password"
-              onChange={this.onPasswordChange.bind(this)}
+              // onChange={this.onPasswordChange.bind(this)}
             />
-            <small className="danger-error">
-              {passwordErr ? passwordErr : ""}
-            </small>
+            {/* <small className="danger-error">
+            {passwordErr ? passwordErr : ""}
+          </small> */}
 
-            {this.state.password && (
+            {/* {this.state.password && (
               <div className="password-state">
-                <div
-                  className={"pwd pwd-weak " + (pwdWeak ? "show" : "")}
-                ></div>
-                <div
-                  className={"pwd pwd-medium " + (pwdMedium ? "show" : "")}
-                ></div>
-                <div
-                  className={"pwd pwd-strong " + (pwdStrong ? "show" : "")}
-                ></div>
+                <div className={"pwd pwd-weak " + (pwdWeak ? "show" : "")}></div>
+              <div
+                className={"pwd pwd-medium " + (pwdMedium ? "show" : "")}
+              ></div>
+              <div
+                className={"pwd pwd-strong " + (pwdStrong ? "show" : "")}
+              ></div>
               </div>
-            )}
+            )} */}
           </div>
 
-          <button
-            type="button"
-            className="login-btn"
-            onHover={this.openPopup.bind(this)}
-            onClick={this.submitRegister.bind(this)}
-          >
-            Register
-          </button>
+          {/* <button
+          type="button"
+          className="login-btn"
+          onHover={this.openPopup.bind(this)}
+          onClick={this.submitRegister.bind(this)}
+        >
+          Register
+        </button> */}
         </div>
       </div>
-    );
-  }
-}
+    </>
+  );
+  // }
+};
+
+export default RegisterBox;
