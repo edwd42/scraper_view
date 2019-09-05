@@ -1,7 +1,6 @@
 //Login Box
 import React, { useContext } from "react";
 import history from "./history";
-
 import "./styles/_loginSty.scss";
 import auth from "./auth";
 import { UserContext } from "./LoginRegister";
@@ -16,7 +15,6 @@ const LoginBox = props => {
     <>
       <div className="inner-container">
         <div className="header">Login</div>
-
         <div className="box">
           <div className="input-group">
             <label htmlFor="username">Username</label>

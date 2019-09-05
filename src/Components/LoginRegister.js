@@ -1,7 +1,7 @@
 import React, { useState, createContext } from "react";
 import "./styles/_loginSty.scss";
 import LoginBox from "./LoginBox";
-import RegisterBox from "./oRegisterBox";
+import RegisterBox from "./RegisterBox";
 import Header from "./Header";
 
 const initialValue = "Data";
@@ -15,16 +15,28 @@ export const LoginRegister = props => {
   const [isLoginOpen, setIsLoginOpen] = useState(true);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
+  // // showLoginBox() {
+  // const showLoginBox = () => {
+  //   setIsLoginOpen(prevIsLoginOpen => !prevIsLoginOpen);
+  //   setIsRegisterOpen(prevIsRegisterOpen => !prevIsRegisterOpen);
+  // };
+
+  // // showRegisterBox() {
+  // const showRegisterBox = () => {
+  //   setIsLoginOpen(prevIsLoginOpen => !prevIsLoginOpen);
+  //   setIsRegisterOpen(prevIsRegisterOpen => !prevIsRegisterOpen);
+  // };
+
   // showLoginBox() {
   const showLoginBox = () => {
-    setIsLoginOpen(prevIsLoginOpen => !prevIsLoginOpen);
-    setIsRegisterOpen(prevIsRegisterOpen => !prevIsRegisterOpen);
+    setIsLoginOpen(true);
+    setIsRegisterOpen(false);
   };
 
   // showRegisterBox() {
   const showRegisterBox = () => {
-    setIsLoginOpen(prevIsLoginOpen => !prevIsLoginOpen);
-    setIsRegisterOpen(prevIsRegisterOpen => !prevIsRegisterOpen);
+    setIsLoginOpen(false);
+    setIsRegisterOpen(true);
   };
 
   // const data = {
@@ -56,8 +68,8 @@ export const LoginRegister = props => {
               Register
             </div>
           </div>
-          {isLoginOpen && <LoginBox props={props.history} />}
-          {isRegisterOpen && <RegisterBox props={props} />}
+          {isLoginOpen && <LoginBox />}
+          {isRegisterOpen && <RegisterBox />}
         </div>
       </UserContext.Provider>
     </React.Fragment>
