@@ -5,12 +5,18 @@ import history from "./components/history";
 import * as serviceWorker from "./serviceWorker";
 import "./styles/index.css";
 import App from "./App";
+import Auth from "./components/Auth";
 // import { createBrowserHistory } from "history";
 
 // https://github.com/fernandoporazzi/react-router-react-context-api/blob/master/src/js/index.js
 // const history = createBrowserHistory();
 
+// https://blog.tretainfotech.com/posts/2018/october/reactjs-authentication-with-auth0-part-1-configure-your-auth0-account/
+// https://blog.tretainfotech.com/posts/2018/october/react-js-authentication-with-auth0-part-2/
 // https://youtu.be/JIHDS1x_EYU?t=831
+
+// const auth = new Auth();
+
 let state = {};
 window.setState = changes => {
   state = Object.assign({}, state, changes);
@@ -23,8 +29,10 @@ window.setState = changes => {
   );
 };
 
+/* eslint no-restricted-globals:0*/
 let initialState = {
-  name: "Me"
+  name: "Me",
+  location: location.pathname.replace(/^\/?|\/$/g, "")
 };
 
 window.setState(initialState);

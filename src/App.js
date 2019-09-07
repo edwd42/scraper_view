@@ -7,6 +7,7 @@ import { AppLayout } from "./components/applayout";
 import { ProtectedRoute } from "./components/protectedroute";
 import LoginRegister from "./components/LoginRegister";
 import about from "./components/About";
+import callback from "./components/Callback";
 import Data from "./components/Data";
 import Snapshot from "./components/Snapshot";
 import axios from "axios";
@@ -146,9 +147,11 @@ class App extends Component {
       <AppContext.Provider value={data}>
         {this.props.children}
         <div className="App">
+          {/* <h1>Hello {this.props.name}</h1> */}
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/about" component={about} />
+            <Route exact path="/callback" component={callback} />
             <Route exact path="/login" component={LoginRegister} />
             <ProtectedRoute exact path="/app" component={AppLayout} />
             <ProtectedRoute

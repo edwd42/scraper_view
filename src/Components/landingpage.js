@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import { withRouter } from "react-router";
-import auth from "./auth";
+import auth from "./Auth";
 import Header from "./Header";
 
 import yahoo_finance from "../assets/images/yahoo_finance.png";
@@ -26,9 +26,10 @@ export const LandingPage = props => {
       {/* <LoginBox />
       <RegisterBox /> */}
       <button
+        // onClick={this.props.auth.login}
         onClick={() => {
           auth.login(() => {
-            props.history.push("/login");
+            props.history.push("/app");
           });
         }}
       >

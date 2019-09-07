@@ -1,6 +1,6 @@
 import React from "react";
 import history from "./history";
-import auth from "./auth";
+import auth from "./Auth";
 import Header from "./Header";
 import Snapshot from "./Snapshot";
 
@@ -12,7 +12,6 @@ export const AppLayout = props => {
     <React.Fragment>
       <div>
         <Header />
-
         <button
           onClick={() => {
             auth.logout(() => {

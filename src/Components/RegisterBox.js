@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import history from "./history";
 import "./styles/_loginSty.scss";
-import auth from "./auth";
+import auth from "./Auth";
 import { UserContext } from "./LoginRegister";
 
 // export default class RegisterBox extends React.Component {
