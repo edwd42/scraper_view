@@ -10,12 +10,24 @@ import App from "./App";
 // https://github.com/fernandoporazzi/react-router-react-context-api/blob/master/src/js/index.js
 // const history = createBrowserHistory();
 
-ReactDOM.render(
-  <Router history={history}>
-    <App />
-  </Router>,
-  document.getElementById("root")
-);
+// https://youtu.be/JIHDS1x_EYU?t=831
+let state = {};
+window.setState = changes => {
+  state = Object.assign({}, state, changes);
+
+  ReactDOM.render(
+    <Router history={history}>
+      <App {...state} />
+    </Router>,
+    document.getElementById("root")
+  );
+};
+
+let initialState = {
+  name: "Me"
+};
+
+window.setState(initialState);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
