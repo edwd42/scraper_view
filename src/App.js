@@ -5,7 +5,6 @@ import $ from "jquery";
 import { LandingPage } from "./components/landingpage";
 import { AppLayout } from "./components/applayout";
 import { ProtectedRoute } from "./components/protectedroute";
-// import LoginRegister from "./components/LoginRegister";
 import about from "./components/About";
 import callback from "./components/Callback";
 import Data from "./components/Data";
@@ -152,7 +151,6 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/about" component={about} />
             <Route exact path="/callback" component={callback} />
-            {/* <Route exact path="/login" component={LoginRegister} /> */}
             <ProtectedRoute exact path="/app" component={AppLayout} />
             <ProtectedRoute
               exact

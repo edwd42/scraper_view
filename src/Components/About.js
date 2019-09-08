@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header";
+import Header from "./header";
 import "../assets/styles/App.css";
 
 import SpringBootStack from "../assets/images/SpringBootStack.png";

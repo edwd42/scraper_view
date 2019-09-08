@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import { withRouter } from "react-router";
-import auth from "./Auth";
-import Header from "./Header";
+import auth from "./auth";
+import Header from "./header";
 
 import yahoo_finance from "../assets/images/yahoo_finance.png";
 
